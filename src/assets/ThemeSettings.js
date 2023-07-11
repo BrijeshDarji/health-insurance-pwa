@@ -4,6 +4,7 @@ export const siteColors = {
     primary: {
         main: "#11184A",
         light: "",
+        subText: "#B1B5D2"
     },
     siteOrange: {
         main: "#FC6F22",
@@ -30,9 +31,9 @@ export const ThemeSettings = createTheme({
     palette: siteColors,
     mixins: {
         toolbar: { color: "white" },
-        regularText: "Roboto-Regular",
-        mediumText: "Roboto-Medium",
-        boldText: "Roboto-Bold",
+        regularText: "sf-pro-display-regular",
+        mediumText: "sf-pro-display-medium",
+        boldText: "sf-pro-display-bold",
         flex: (align, justify) => {
             let obj = { display: "flex" }
             if (align) {
