@@ -10,7 +10,7 @@
   "lang": "en",
   "display": "standalone",
   "theme_color": "#FC6F22",
-  "background_color": "#11184A",
+  "background_color": "#FC6F22",
   "icons": [
     {
       "src": "logo192.png",
