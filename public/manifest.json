@@ -9,8 +9,8 @@
   ],
   "lang": "en",
   "display": "standalone",
-  "theme_color": "#11184A",
-  "background_color": "#FC6F22",
+  "theme_color": "#FC6F22",
+  "background_color": "#11184A",
   "icons": [
     {
       "src": "logo192.png",
@@ -25,19 +25,19 @@
   ],
   "screenshots": [
     {
-      "src": "Welcome-screenshot.png",
+      "src": "../screenshots/Welcome-screenshot.png",
       "sizes": "393x852"
     },
     {
-      "src": "Policy-details-screenshot.png",
+      "src": "../screenshots/Policy-details-screenshot.png",
       "sizes": "393x852"
     },
     {
-      "src": "Preview-screenshot.png",
+      "src": "../screenshots/Preview-screenshot.png",
       "sizes": "393x852"
     },
     {
-      "src": "Success-screenshot.png",
+      "src": "../screenshots/Success-screenshot.png",
       "sizes": "393x852"
     }
   ]
