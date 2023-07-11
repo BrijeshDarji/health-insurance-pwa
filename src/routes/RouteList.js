@@ -1,7 +1,12 @@
 import WelcomeScreen from "../components/WelcomeScreen"
 import ClaimForm from "../components/ClaimForm/ClaimForm"
-import ClaimFormPreview from "../components/ClaimForm/ClaimFormPreview"
 import ClaimFormSuccess from "../components/ClaimForm/ClaimFormSuccess.jsx"
+
+import {
+    URL_CLAIM,
+    URL_CLAIM_SUCCESS,
+    URL_WELCOME_SCREEN,
+} from "../helpers/SitePath"
 
 export const RouteList = [
     {
@@ -10,22 +15,17 @@ export const RouteList = [
         component: WelcomeScreen,
     },
     {
-        path: "/welcome",
+        path: URL_WELCOME_SCREEN,
         exact: true,
         component: WelcomeScreen,
     },
     {
-        path: "/claim",
+        path: URL_CLAIM,
         exact: true,
         component: ClaimForm,
     },
     {
-        path: "/claimPreview",
-        exact: true,
-        component: ClaimFormPreview,
-    },
-    {
-        path: "/claimSuccess",
+        path: URL_CLAIM_SUCCESS,
         exact: true,
         component: ClaimFormSuccess,
     },

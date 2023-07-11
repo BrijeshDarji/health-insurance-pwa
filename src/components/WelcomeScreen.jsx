@@ -8,6 +8,7 @@ import {
 
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import logoWelcome from "../assets/images/svg/logo-welcome.svg";
+import { URL_CLAIM } from "../helpers/SitePath.js";
 
 function WelcomeScreen() {
     return (
@@ -28,7 +29,7 @@ function WelcomeScreen() {
                 variant="contained"
                 endIcon={<ArrowForwardIcon />}
                 size="24px"
-                href="/claim"
+                href={URL_CLAIM}
             >
                 <p>Claim Now</p>
             </GlobalButton>

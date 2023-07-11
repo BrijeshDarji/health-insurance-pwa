@@ -1,20 +1,73 @@
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import {
     MainContainer,
     Header,
     StepperHeader,
-    FormsContainer,
     BtnGroup,
     BackButton,
     NextButton,
-    PhoneGroup,
+    FormsContainer,
 } from "./ClaimForm.style.js";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import OutlinedTextInput from "../form_components/OutlinedTextInput";
-import OutlinedSelect from "../form_components/OutlinedSelect.jsx";
+
+import ClaimPolicyHolderDetails from "./ClaimPolicyHolderDetails";
+import ClaimPatientDetails from "./ClaimPatientDetails";
+import ClaimDescription from "./ClaimDescription";
+import ClaimVisitDetails from "./ClaimVisitDetails";
+import ClaimDocuments from "./ClaimDocuments";
+import ClaimFormPreview from "./ClaimFormPreview";
+
+import { URL_CLAIM_SUCCESS, URL_WELCOME_SCREEN } from "../../helpers/SitePath";
 
 function ClaimForm() {
+    const navigate = useNavigate();
+
+    const [activeStep, setActiveStep] = useState(1);
+
+    const getStepContent = () => {
+        switch (activeStep) {
+            case 1:
+                return <ClaimPolicyHolderDetails />;
+
+            case 2:
+                return <ClaimPatientDetails />;
+
+            case 3:
+                return <ClaimDescription />;
+
+            case 4:
+                return <ClaimVisitDetails />;
+
+            case 5:
+                return <ClaimDocuments />;
+
+            case 6:
+                return <ClaimFormPreview />;
+
+            default:
+                return null;
+        }
+    };
+
+    const goToPreviousPage = () => {
+        if (activeStep === 1) {
+            navigate(URL_WELCOME_SCREEN);
+        } else {
+            setActiveStep(activeStep - 1);
+        }
+    };
+
+    const goToNextPage = () => {
+        setActiveStep(activeStep + 1);
+    };
+
+    const handleSubmit = () => {
+        navigate(URL_CLAIM_SUCCESS);
+    };
+
     return (
         <MainContainer>
             {/* Main header */}
@@ -25,51 +78,22 @@ function ClaimForm() {
             <StepperHeader>
                 <p>Policy Details</p>
             </StepperHeader>
-
-            {/* Stepper Forms */}
-            <FormsContainer>
-                <OutlinedTextInput
-                    label="First Name"
-                    name="policyHolderFirstName"
-                    placeholder="Enter first name"
-                />
-                <OutlinedTextInput
-                    label="Last Name"
-                    name="policyHolderLastName"
-                    placeholder="Enter last name"
-                />
-                <OutlinedTextInput
-                    label="Policy number"
-                    name="policyHolderFirstName"
-                    placeholder="Enter policy number"
-                />
-                <OutlinedTextInput
-                    label="Email Address"
-                    name="policyHolderEmail"
-                    placeholder="Enter email address"
-                />
-                <PhoneGroup>
-                    <OutlinedSelect
-                        label="Phone Number"
-                        name="policyHolderPhoneCode"
-                        placeholder="Enter phone number"
-                    />
-                    <OutlinedTextInput
-                        name="policyHolderPhoneNumber"
-                        placeholder="Enter phone number"
-                        type="number"
-                    />
-                </PhoneGroup>
-            </FormsContainer>
-
+            <FormsContainer>{getStepContent()}</FormsContainer>
             {/* Back and Next Buttons */}
             <BtnGroup>
-                <BackButton variant="contained" href="/welcome">
+                <BackButton variant="contained" onClick={goToPreviousPage}>
                     Back
                 </BackButton>
-                <NextButton variant="contained" href="/claim">
-                    Next
-                </NextButton>
+                {activeStep === 6 ? (
+                    <NextButton variant="contained" onClick={handleSubmit}>
+                        {" "}
+                        Submit
+                    </NextButton>
+                ) : (
+                    <NextButton variant="contained" onClick={goToNextPage}>
+                        {activeStep === 5 ? "Preview" : "Next"}
+                    </NextButton>
+                )}
             </BtnGroup>
         </MainContainer>
     );
