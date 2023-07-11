@@ -2,7 +2,7 @@ import React from 'react'
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 
-import { formAttributes } from "../../helpers/Utils"
+// import { formAttributes } from "../../helpers/Utils"
 
 function OutlinedTextInput({
     label,
@@ -11,7 +11,7 @@ function OutlinedTextInput({
     disabled,
     formik,
 }) {
-    const formAttr = formAttributes(formik, name)
+    // const formAttr = formAttributes(formik, name)
     return (
         <>
             <InputLabel htmlFor={`outlined-input-for-${name}`}>
@@ -23,7 +23,7 @@ function OutlinedTextInput({
                 fullWidth
                 disabled={disabled}
                 placeholder={placeholder}
-                {...formAttr}
+            // {...formAttr}
             />
         </>
     )
