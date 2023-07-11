@@ -44,6 +44,7 @@ export const StepperHeader = styled.div`
         line-height: 14px;
         letter-spacing: 0px;
         margin-left: auto;
+        text-align: center;
     }
 `;
 export const FormsContainer = styled.div`
@@ -51,6 +52,9 @@ export const FormsContainer = styled.div`
     width: 100%;
     padding: 24px;
     overflow: auto;
+    &.claim-preview{
+        height: calc(100% - 125px);
+    }
     & > p {
         font-family: "sf-pro-display-medium";
         font-size: 12px;
@@ -101,6 +105,63 @@ export const BackButton = styled(Button)(({ theme }) => ({
     display: "flex",
     justifyContent: "center",
     color: theme.palette.primary.main,
-    background: theme.palette.otherColors.borderSemiLight,
+    backgroundColor: theme.palette.otherColors.borderSemiLight,
     fontFamily: ["sf-pro-display-medium"].join(","),
+    '&:active': {
+        backgroundColor: theme.palette.otherColors.borderSemiLight,
+    },
+    '&:focus': {
+        boxShadow: "none",
+        backgroundColor: theme.palette.otherColors.borderSemiLight,
+    },
 }));
+
+export const Steps = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+`
+export const StepsDigit = styled.div`
+    width: 48px;
+    height: 100%;
+    color: ${(props) => props.theme.palette.primary.main};
+    letter-spacing: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    
+    & > span{
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        font-size: 12px;
+        line-height: 14px;
+        font-family: "sf-pro-display-medium";
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: ${(props) => props.theme.palette.otherColors.stepperDefaultLabel};
+        border: 1px solid ${(props) => props.theme.palette.otherColors.stepperBorder};
+        background-color: transparent;
+        &.icon img{
+            width: 14px;
+        }
+    }
+    &.active > span{
+        color: ${(props) => props.theme.palette.siteWhite.main};
+        border-color: ${(props) => props.theme.palette.siteOrange.main};
+        background-color: ${(props) => props.theme.palette.siteOrange.main};
+    }
+
+    &.active::after{
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background-color: ${(props) => props.theme.palette.siteOrange.main};
+    }
+`;
