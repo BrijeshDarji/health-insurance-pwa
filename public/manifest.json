@@ -1,0 +1,44 @@
+{
+  "short_name": "Regency",
+  "name": "Regency Employee Benifits",
+  "description": "Regency is recognised for its truly global reach and its ability to implement worldwide solutions for international organisations.",
+  "start_url": ".",
+  "id": "/",
+  "categories": [
+    "insurance"
+  ],
+  "lang": "en",
+  "display": "standalone",
+  "theme_color": "#11184A",
+  "background_color": "#FC6F22",
+  "icons": [
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "Welcome-screenshot.png",
+      "sizes": "393x852"
+    },
+    {
+      "src": "Policy-details-screenshot.png",
+      "sizes": "393x852"
+    },
+    {
+      "src": "Preview-screenshot.png",
+      "sizes": "393x852"
+    },
+    {
+      "src": "Success-screenshot.png",
+      "sizes": "393x852"
+    }
+  ]
+}
