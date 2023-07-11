@@ -1,9 +1,32 @@
-import React, { memo } from 'react'
+import React, { memo } from "react";
+import {
+  WelcomeContainer,
+  TextMain,
+  TextSub,
+  GlobalButton,
+} from "./WelcomeScreenStyle.js";
+
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import logoWelcome from "../assets/images/svg/logo-welcome.svg";
 
 function WelcomeScreen() {
-    return (
-        <div>WelcomeScreen</div>
-    )
+  return (
+    <WelcomeContainer>
+      <img src={logoWelcome} alt="logo-welcome" width="221px" height="200px" />
+      <TextMain>Welcome to Regency</TextMain>
+      <TextSub>
+        Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry. Lorem Ipsum has been the industry's standard dummy text.
+      </TextSub>
+      <GlobalButton
+        variant="contained"
+        endIcon={<ArrowForwardIcon />}
+        size="24px"
+      >
+        <p>Claim Now</p>
+      </GlobalButton>
+    </WelcomeContainer>
+  );
 }
 
-export default memo(WelcomeScreen)
+export default memo(WelcomeScreen);
