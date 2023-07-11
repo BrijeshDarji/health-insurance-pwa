@@ -1,12 +1,17 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Regency",
+  "name": "Regency Employee Benifits",
+  "description": "Regency is recognised for its truly global reach and its ability to implement worldwide solutions for international organisations.",
+  "start_url": ".",
+  "id": "/",
+  "categories": [
+    "insurance"
+  ],
+  "lang": "en",
+  "display": "standalone",
+  "theme_color": "#11184A",
+  "background_color": "#FC6F22",
   "icons": [
-    {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
     {
       "src": "logo192.png",
       "type": "image/png",
@@ -18,8 +23,22 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "screenshots": [
+    {
+      "src": "Welcome-screenshot.png",
+      "sizes": "393x852"
+    },
+    {
+      "src": "Policy-details-screenshot.png",
+      "sizes": "393x852"
+    },
+    {
+      "src": "Preview-screenshot.png",
+      "sizes": "393x852"
+    },
+    {
+      "src": "Success-screenshot.png",
+      "sizes": "393x852"
+    }
+  ]
 }
