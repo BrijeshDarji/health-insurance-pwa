@@ -25,6 +25,12 @@ export const siteColors = {
         normal: "#e0e0e0",
         bg: "#99999933",
     },
+    otherColors: {
+        borderLight: "#B1B5D2",
+        borderSemiLight: "#F0F2FC",
+        borderInput: "#E9E9E9",
+        radioColor: "#B0B0B0"
+    }
 }
 
 export const ThemeSettings = createTheme({
