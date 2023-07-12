@@ -1,4 +1,5 @@
 import React from "react";
+import dayjs from 'dayjs';
 
 import { GlobalDatePicker, GlobalInputLabel } from "./FormComponents.style.js";
 
@@ -14,12 +15,13 @@ function OutlinedDatePicker({
     disabled,
     formik,
     required = false,
+    disableFuture = false,
 }) {
     const formAttr = formAttributes(formik, name);
 
-    const handleChange = (e) => {
+    const handleChange = (date) => {
         formik.setFieldValue &&
-            formik.setFieldValue(name, e.target?.value || "");
+            formik.setFieldValue(name, dayjs(date).format("MM/DD/YYYY"))
     };
 
     return (
@@ -35,13 +37,21 @@ function OutlinedDatePicker({
                     name="row-radio-buttons-group"
                     required={required}
                     disabled={disabled}
-                    defaultValue=""
+                    value={dayjs(formik?.values?.[name])}
                     onChange={handleChange}
-                    {...formAttr}
-                    slotProps={{ textField: { fullWidth: true } }}
+                    format="MM/DD/YYYY"
+                    placeHolder="MM/DD/YYYY"
+                    selectedSections="day"
+                    slotProps={{
+                        textField: {
+                            fullWidth: true,
+                            helperText: formAttr.helperText
+                        }
+                    }}
                     slots={{
                         openPickerIcon: CalendarTodayIcon,
                     }}
+                    disableFuture={disableFuture}
                 ></GlobalDatePicker>
             </LocalizationProvider>
         </div>
