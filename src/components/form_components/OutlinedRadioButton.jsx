@@ -36,28 +36,12 @@ function OutlinedRadioButton({
             >
                 <FormControlLabel
                     value="female"
-                    control={
-                        <Radio
-                            sx={{
-                                "&.Mui-checked": {
-                                    color: "#FC6F22",
-                                },
-                            }}
-                        />
-                    }
+                    control={<Radio />}
                     label="Female"
                 />
                 <FormControlLabel
                     value="male"
-                    control={
-                        <Radio
-                            sx={{
-                                "&.Mui-checked": {
-                                    color: "#FC6F22",
-                                },
-                            }}
-                        />
-                    }
+                    control={<Radio />}
                     label="Male"
                 />
             </GlobalRadioGroup>

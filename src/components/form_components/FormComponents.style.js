@@ -82,6 +82,12 @@ export const GlobalRadioGroup = styled(RadioGroup)(({ theme }) => ({
     marginBottom: 18,
     border: 0,
     color: theme.palette.otherColors.radioColor,
+    "& .MuiRadio-root": {
+        color: theme.palette.otherColors.radioColor,
+    },
+    "& .MuiRadio-root.Mui-checked, & .MuiRadio-root.Mui-checked + .MuiTypography-root": {
+        color: theme.palette.siteOrange.main,
+    },
     "& .MuiTypography-root": {
         fontFamily: ["sf-pro-display-regular"].join(","),
         fontSize: 14,
@@ -117,10 +123,14 @@ export const GlobalTextarea = styled(TextareaAutosize)(({ theme }) => ({
     padding: "13px 17px",
     width: "100%",
     height: "300px",
+    fontWeight: 400,
     fontFamily: ["sf-pro-display-regular"].join(","),
     "&:focus": {
         outline: "none",
         borderColor: theme.palette.otherColors.borderInput,
+    },
+    "&::placeholder": {
+        color: theme.palette.otherColors.radioColor,
     },
     "& .Mui-error": {
         fontFamily: ["sf-pro-display-regular"].join(","),
