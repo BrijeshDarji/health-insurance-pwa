@@ -84,6 +84,7 @@ export const getDynamicElements = (
                     formik={formik}
                     name={field.name}
                     placeholder={field.placeholder}
+                    options={field.options}
                     required={field.required}
                 />
             )

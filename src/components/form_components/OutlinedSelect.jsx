@@ -38,7 +38,6 @@ function OutlinedSelect({
                 disabled={disabled}
                 placeholder={placeholder}
                 {...formAttr}
-                defaultValue=""
                 required={required}
                 value={options?.length ? formik?.values?.[name] || "" : ""}
                 onChange={handleChange}

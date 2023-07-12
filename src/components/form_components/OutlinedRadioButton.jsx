@@ -11,6 +11,7 @@ function OutlinedRadioButton({
     disabled,
     formik,
     required = false,
+    options = [],
 }) {
     const formAttr = formAttributes(formik, name);
 
@@ -34,16 +35,18 @@ function OutlinedRadioButton({
                 onChange={handleChange}
                 {...formAttr}
             >
-                <FormControlLabel
-                    value="female"
-                    control={<Radio />}
-                    label="Female"
-                />
-                <FormControlLabel
-                    value="male"
-                    control={<Radio />}
-                    label="Male"
-                />
+                {
+                    options?.length && (
+                        options.map(data => (
+                            <FormControlLabel
+                                key={data.value}
+                                label={data.label}
+                                value={data.value}
+                                control={<Radio />}
+                            />
+                        ))
+                    )
+                }
             </GlobalRadioGroup>
         </div>
     );
