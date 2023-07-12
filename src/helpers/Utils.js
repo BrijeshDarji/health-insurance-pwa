@@ -97,6 +97,7 @@ export const getDynamicElements = (
                     name={field.name}
                     placeholder={field.placeholder}
                     required={field.required}
+                    disableFuture={field.disableFuture}
                 />
             )
             break
@@ -131,6 +132,8 @@ const setFieldType = (field, fieldType, schema, initialValues, rowsToEdit) => {
         "policyHolderFirstName",
         "policyHolderLastName",
         "policyNumber",
+        "patientFirstName",
+        "patientLastName",
     ].includes(field.name)) {
 
         fieldType =
@@ -142,9 +145,12 @@ const setFieldType = (field, fieldType, schema, initialValues, rowsToEdit) => {
                 })
 
         setValueInSchema()
-
     }
-    else if (["policyHolderEmail"].includes(field.name)) {
+    else if ([
+        "policyHolderEmail",
+        "patientEmail",
+    ].includes(field.name)) {
+
         fieldType =
             Yup
                 .string()
@@ -156,7 +162,11 @@ const setFieldType = (field, fieldType, schema, initialValues, rowsToEdit) => {
 
         setValueInSchema()
     }
-    else if (["policyHolderPhoneNumber"].includes(field.name)) {
+    else if ([
+        "policyHolderPhoneNumber",
+        "patientPhoneNumber",
+    ].includes(field.name)) {
+
         fieldType = Yup
             .string()
             .trim()

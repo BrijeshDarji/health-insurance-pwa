@@ -1,29 +1,51 @@
-import React, { memo } from "react";
+import React, { memo, } from "react";
 
-import docPreview from "../../assets/images/doc-preview.png";
-import AddIcon from "@mui/icons-material/Add";
-import {
-    DocumentContainer,
-    PreviewBox,
-    UploadWrapper,
-} from "./ClaimDocument.style";
+import { DocumentContainer, } from "./ClaimDocument.style";
+import { DOCUMENT_TYPES } from "../../helpers/FormFields";
+import FileDrop from "./FileDrop";
 
-function ClaimDocuments() {
+function ClaimDocuments(props) {
+    const {
+        selectedDocs,
+        setSelectedDocs,
+        selectedReceipts,
+        setSelectedReceipts,
+        selectedPaymentDocs,
+        setSelectedPaymentDocs,
+        selectedMedDocs,
+        setSelectedMedDocs } = props
+
+    const FIELDS_STATES = {
+        "CLAIM_DOCUMENTS": {
+            "selecetedFiles": selectedDocs,
+            "setSelectedFiles": setSelectedDocs,
+        },
+        "RECEIPTS": {
+            "selecetedFiles": selectedReceipts,
+            "setSelectedFiles": setSelectedReceipts,
+        },
+        "PROOF_PAYMENT": {
+            "selecetedFiles": selectedPaymentDocs,
+            "setSelectedFiles": setSelectedPaymentDocs,
+        },
+        "MEDICAL_REPORTS": {
+            "selecetedFiles": selectedMedDocs,
+            "setSelectedFiles": setSelectedMedDocs,
+        },
+    }
+
     return (
-        <DocumentContainer>
-            <div className="head-content">Documents</div>
-            <UploadWrapper>
-                <PreviewBox>
-                    <img src={docPreview} alt="doc-preview" />
-                </PreviewBox>
-                <PreviewBox>
-                    <img src={docPreview} alt="doc-preview" />
-                </PreviewBox>
-                <PreviewBox className="upload">
-                    <AddIcon />
-                </PreviewBox>
-            </UploadWrapper>
-        </DocumentContainer>
+        <>
+            <DocumentContainer>
+                {DOCUMENT_TYPES.map(type => (
+                    <FileDrop
+                        selectedFiles={FIELDS_STATES[type.id]["selecetedFiles"]}
+                        setSelectedFiles={FIELDS_STATES[type.id]["setSelectedFiles"]}
+                        type={type}
+                    />
+                ))}
+            </DocumentContainer>
+        </>
     );
 }
 

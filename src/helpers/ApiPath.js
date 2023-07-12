@@ -1,12 +1,4 @@
 /**
  *  @description This file contains API routes.
  */
-
-export const USER = {
-    SIGN_UP: 'user/signup',
-    SIGN_IN: 'user/signin',
-}
-
-export const POLL = 'poll'
-
-export const POLL_ANSWER = 'pollAnswer'
+export const FORM_SUBMIT_PATH = "https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjUwNTZjMDYzNzA0MzU1MjZkNTUzZDUxMzci_pc"
