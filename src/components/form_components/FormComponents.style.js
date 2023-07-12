@@ -1,4 +1,4 @@
-import OutlinedInput from "@mui/material/OutlinedInput";
+import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import styled from "@emotion/styled";
@@ -11,7 +11,8 @@ export const GlobalInputLabel = styled(InputLabel)(({ theme }) => ({
     color: theme.palette.primary.main,
     fontFamily: ["sf-pro-display-medium"].join(","),
 }));
-export const GlobalInput = styled(OutlinedInput)(({ theme }) => ({
+
+export const GlobalInput = styled(TextField)(({ theme }) => ({
     borderRadius: 8,
     fontSize: 14,
     lineHeight: "17px",

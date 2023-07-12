@@ -1,5 +1,6 @@
-import React, { memo, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useFormik } from "formik";
 
 import {
     MainContainer,
@@ -21,16 +22,38 @@ import ClaimDocuments from "./ClaimDocuments";
 import ClaimFormPreview from "./ClaimFormPreview";
 
 import { URL_CLAIM_SUCCESS, URL_WELCOME_SCREEN } from "../../helpers/SitePath";
+import { GetFormikObject } from "../../helpers/Utils.js";
+import { POLICY_HOLDER_DETAIL_FIELDS } from "../../helpers/FormFields.js";
 
 function ClaimForm() {
     const navigate = useNavigate();
 
     const [activeStep, setActiveStep] = useState(1);
+    const [formikObj1, setFormikObj1] = useState({})
+
+    const formValidator1 = useFormik(formikObj1)
+
+    useEffect(() => {
+        const defaultValues = {
+            "policyHolderPhoneCode": "+91",
+        }
+        handleFormikValues(defaultValues)
+        // eslint-disable-next-line
+    }, [])
+
+    const handleFormikValues = (rows = {}) => {
+        setUpFormik(POLICY_HOLDER_DETAIL_FIELDS, setFormikObj1, rows)
+    }
+
+    const setUpFormik = (fields, setter, rows) => {
+        const validator = GetFormikObject(fields, rows)
+        setter(validator)
+    }
 
     const getStepContent = () => {
         switch (activeStep) {
             case 1:
-                return <ClaimPolicyHolderDetails />;
+                return <ClaimPolicyHolderDetails formik={formValidator1} />;
 
             case 2:
                 return <ClaimPatientDetails />;
@@ -61,6 +84,18 @@ function ClaimForm() {
     };
 
     const goToNextPage = () => {
+        switch (activeStep) {
+            case 1:
+                formValidator1.handleSubmit()
+
+                if (!formValidator1.isValid) {
+                    return
+                }
+                break
+
+            default:
+                break
+        }
         setActiveStep(activeStep + 1);
     };
 
