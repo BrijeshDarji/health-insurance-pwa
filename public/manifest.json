@@ -8,6 +8,7 @@
     "insurance"
   ],
   "lang": "en",
+  "orientation": "portrait",
   "display": "standalone",
   "theme_color": "#11184A",
   "background_color": "#11184A",
