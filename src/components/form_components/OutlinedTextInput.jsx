@@ -1,7 +1,5 @@
-import React from 'react'
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-
+import React from "react";
+import { GlobalInputLabel, GlobalInput } from "./FormComponents.style.js";
 // import { formAttributes } from "../../helpers/Utils"
 
 function OutlinedTextInput({
@@ -9,24 +7,27 @@ function OutlinedTextInput({
     name,
     placeholder,
     disabled,
+    type,
     formik,
 }) {
     // const formAttr = formAttributes(formik, name)
-    return (
-        <>
-            <InputLabel htmlFor={`outlined-input-for-${name}`}>
-                {label}
-            </InputLabel>
 
-            <OutlinedInput
+    return (
+        <div>
+            <GlobalInputLabel htmlFor={`outlined-input-for-${name}`}>
+                {label}
+            </GlobalInputLabel>
+
+            <GlobalInput
                 color="primary"
                 fullWidth
                 disabled={disabled}
                 placeholder={placeholder}
-            // {...formAttr}
+                type={type}
+                // {...formAttr}
             />
-        </>
-    )
+        </div>
+    );
 }
 
-export default OutlinedTextInput
+export default OutlinedTextInput;

@@ -1,31 +1,31 @@
 @font-face {
-  font-family: "sf-pro-display-regular";
-  font-weight: normal;
-  src: url("../src/assets/fonts/sf-pro-display/SFPRODISPLAYREGULAR.OTF")
-    format("opentype");
+    font-family: "sf-pro-display-regular";
+    font-weight: normal;
+    src: url("../src/assets/fonts/sf-pro-display/SFPRODISPLAYREGULAR.OTF")
+        format("opentype");
 }
 
 @font-face {
-  font-family: "sf-pro-display-medium";
-  font-weight: normal;
-  src: url("../src/assets/fonts/sf-pro-display/SFPRODISPLAYMEDIUM.OTF")
-    format("opentype");
+    font-family: "sf-pro-display-medium";
+    font-weight: normal;
+    src: url("../src/assets/fonts/sf-pro-display/SFPRODISPLAYMEDIUM.OTF")
+        format("opentype");
 }
 
 @font-face {
-  font-family: "sf-pro-display-bold";
-  font-weight: normal;
-  src: url("../src/assets/fonts/sf-pro-display/SFPRODISPLAYBOLD.OTF")
-    format("opentype");
+    font-family: "sf-pro-display-bold";
+    font-weight: normal;
+    src: url("../src/assets/fonts/sf-pro-display/SFPRODISPLAYBOLD.OTF")
+        format("opentype");
 }
 
 body p {
-  margin: 0;
+    margin: 0;
 }
 
 body {
-  margin: 0;
-  font-family: "sf-pro-display-regular";
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    font-family: "sf-pro-display-regular";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }

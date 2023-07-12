@@ -1,9 +1,7 @@
-import React, { memo } from 'react'
+import React, { memo } from "react";
 
 function ClaimFormPreview() {
-    return (
-        <div>ClaimFormPreview</div>
-    )
+    return <div>ClaimFormPreview</div>;
 }
 
-export default memo(ClaimFormPreview)
+export default memo(ClaimFormPreview);
