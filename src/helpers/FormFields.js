@@ -194,3 +194,10 @@ export const VISIT_INFORMATION_DETAIL_FIELDS = [
         required: true,
     },
 ]
+
+export const DOCUMENT_TYPES = [
+    "Documents",
+    "Receipts",
+    "Proof of Payment",
+    "Medical Reports",
+]

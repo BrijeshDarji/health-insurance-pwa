@@ -1,7 +1,6 @@
 import React, { memo, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-
 import {
     MainContainer,
     Header,
@@ -39,7 +38,11 @@ const stepperLabels = [
 function ClaimForm() {
     const navigate = useNavigate();
 
-    const [activeStep, setActiveStep] = useState(1);
+    const [selectedDocs, setSelectedDocs] = useState([])
+    const [selectedReceipts, setSelectedReceipts] = useState([])
+    const [selectedPaymentDocs, setSelectedPaymentDocs] = useState([])
+    const [selectedMedDocs, setSelectedMedDocs] = useState([])
+    const [activeStep, setActiveStep] = useState(5);
     const [formikObj1, setFormikObj1] = useState({})
 
     const formValidator1 = useFormik(formikObj1)
@@ -76,7 +79,16 @@ function ClaimForm() {
                 return <ClaimVisitDetails />;
 
             case 5:
-                return <ClaimDocuments />;
+                return <ClaimDocuments
+                    selectedDocs={selectedDocs}
+                    setSelectedDocs={setSelectedDocs}
+                    selectedReceipts={selectedReceipts}
+                    setSelectedReceipts={setSelectedReceipts}
+                    selectedPaymentDocs={selectedPaymentDocs}
+                    setSelectedPaymentDocs={setSelectedPaymentDocs}
+                    selectedMedDocs={selectedMedDocs}
+                    setSelectedMedDocs={setSelectedMedDocs}
+                />;
 
             case 6:
                 return <ClaimFormPreview />;
@@ -119,9 +131,15 @@ function ClaimForm() {
             {/* Main header */}
 
             <Header>
-                <ArrowBackIcon />
-                <p>{activeStep <= 5 ? "Claim" : "Preview"}</p>
+                <ArrowBackIcon
+                    onClick={goToPreviousPage}
+                />
+
+                <p>
+                    {activeStep <= 5 ? "Claim" : "Preview"}
+                </p>
             </Header>
+
             {activeStep <= 5 && (
                 <StepperHeader>
                     <Steps>
