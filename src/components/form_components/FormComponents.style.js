@@ -100,12 +100,22 @@ export const GlobalRadioGroup = styled(RadioGroup)(({ theme }) => ({
 
 export const GlobalDatePicker = styled(MobileDatePicker)(({ theme }) => ({
     marginBottom: 18,
+    fontSize: 14,
+    lineHeight: "17px",
+    letterSpacing: 0,
     border: 0,
-    color: theme.palette.otherColors.radioColor,
-    "& .MuiTypography-root": {
+    color: theme.palette.primary.main,
+    "&.Mui-focused": {
+        borderColor: theme.palette.otherColors.borderInput,
+    },
+    "& .MuiInputBase-input": {
         fontFamily: ["sf-pro-display-regular"].join(","),
-        fontSize: 14,
-        lineHeight: "17px",
+        padding: "14px 17px",
+    },
+    "& .MuiInputBase-root": {
+        borderRadius: 8,
+        outline: "none",
+        borderColor: theme.palette.otherColors.borderInput,
     },
     "& .Mui-error": {
         fontFamily: ["sf-pro-display-regular"].join(","),

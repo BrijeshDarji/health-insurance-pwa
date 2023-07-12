@@ -6,6 +6,8 @@ import { formAttributes } from "../../helpers/Utils.js";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
+import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
+
 function OutlinedDatePicker({
     label,
     name,
@@ -34,9 +36,12 @@ function OutlinedDatePicker({
                     required={required}
                     disabled={disabled}
                     defaultValue=""
-                    fullwidth
                     onChange={handleChange}
                     {...formAttr}
+                    slotProps={{ textField: { fullWidth: true } }}
+                    slots={{
+                        openPickerIcon: CalendarTodayIcon,
+                    }}
                 ></GlobalDatePicker>
             </LocalizationProvider>
         </div>
