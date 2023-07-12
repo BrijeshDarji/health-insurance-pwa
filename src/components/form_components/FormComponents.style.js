@@ -2,7 +2,7 @@ import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import styled from "@emotion/styled";
-import { RadioGroup } from "@mui/material";
+import { RadioGroup, TextareaAutosize } from "@mui/material";
 import { MobileDatePicker } from "@mui/x-date-pickers";
 
 export const classes = theme => ({
@@ -100,6 +100,27 @@ export const GlobalDatePicker = styled(MobileDatePicker)(({ theme }) => ({
         fontFamily: ["sf-pro-display-regular"].join(","),
         fontSize: 14,
         lineHeight: "17px",
+    },
+    "& .Mui-error": {
+        fontFamily: ["sf-pro-display-regular"].join(","),
+    },
+}));
+
+export const GlobalTextarea = styled(TextareaAutosize)(({ theme }) => ({
+    fontSize: 14,
+    lineHeight: "17px",
+    letterSpacing: 0,
+    marginBottom: 18,
+    borderRadius: 8,
+    borderColor: theme.palette.otherColors.borderInput,
+    color: theme.palette.primary.main,
+    padding: "13px 17px",
+    width: "100%",
+    height: "300px",
+    fontFamily: ["sf-pro-display-regular"].join(","),
+    "&:focus": {
+        outline: "none",
+        borderColor: theme.palette.otherColors.borderInput,
     },
     "& .Mui-error": {
         fontFamily: ["sf-pro-display-regular"].join(","),

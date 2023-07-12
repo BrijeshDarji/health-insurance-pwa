@@ -6,6 +6,7 @@ export const FIELD_TYPE = {
     DROPDOWN_SELECT: "DROPDOWN_SELECT",
     RADIO_SELECT: "RADIO_SELECT",
     DATE_PICKER: "DATE_PICKER",
+    TEXTAREA: "TEXTAREA"
 }
 
 export const POLICY_HOLDER_DETAIL_FIELDS = [
@@ -150,6 +151,36 @@ export const PATIENT_DETAIL_FIELDS = [
         placeholder: "Select",
         type: "text",
         fieldType: FIELD_TYPE.DROPDOWN_SELECT,
+        required: true,
+    },
+]
+
+export const DISCRIPTION_OF_CLAIM_DETAIL_FIELDS = [
+    {
+        label: "Condition",
+        name: "condition",
+        placeholder: "Enter Condition",
+        type: "text",
+        fieldType: FIELD_TYPE.TEXTAREA,
+        required: true,
+    },
+]
+
+export const VISIT_INFORMATION_DETAIL_FIELDS = [
+    {
+        label: "Date of visit",
+        name: "dateOfVisit",
+        placeholder: "Select Date of Visit",
+        type: "text",
+        fieldType: FIELD_TYPE.DATE_PICKER,
+        required: true,
+    },
+    {
+        label: "Location",
+        name: "location",
+        placeholder: "Enter Location",
+        type: "text",
+        fieldType: FIELD_TYPE.SINGLE_LINE_TEXT,
         required: true,
     },
 ]

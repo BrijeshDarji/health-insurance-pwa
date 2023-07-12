@@ -8,6 +8,7 @@ import { PhoneGroup } from "../components/ClaimForm/ClaimForm.style";
 
 import { FIELD_TYPE } from "./FormFields";
 import OutlinedDatePicker from "../components/form_components/OutlinedDatePicker";
+import OutlinedTextarea from "../components/form_components/OutlinedTextarea";
 
 export const formAttributes = (props, name, helperText) => ({
     id: name,
@@ -90,6 +91,18 @@ export const getDynamicElements = (
         case FIELD_TYPE.DATE_PICKER:
             element = (
                 <OutlinedDatePicker
+                    label={field.label}
+                    formik={formik}
+                    name={field.name}
+                    placeholder={field.placeholder}
+                    required={field.required}
+                />
+            )
+            break
+
+        case FIELD_TYPE.TEXTAREA:
+            element = (
+                <OutlinedTextarea
                     label={field.label}
                     formik={formik}
                     name={field.name}
