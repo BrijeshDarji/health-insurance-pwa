@@ -77,7 +77,7 @@ export const POLICY_HOLDER_DETAIL_FIELDS = [
 export const PATIENT_DETAIL_FIELDS = [
     {
         label: "First Name",
-        name: "policyHolderFirstName",
+        name: "patientFirstName",
         placeholder: "Enter first name",
         type: "text",
         fieldType: FIELD_TYPE.SINGLE_LINE_TEXT,
@@ -85,7 +85,7 @@ export const PATIENT_DETAIL_FIELDS = [
     },
     {
         label: "Last Name",
-        name: "policyHolderLastName",
+        name: "patientLastName",
         placeholder: "Enter last name",
         type: "text",
         fieldType: FIELD_TYPE.SINGLE_LINE_TEXT,
@@ -98,6 +98,16 @@ export const PATIENT_DETAIL_FIELDS = [
         type: "text",
         fieldType: FIELD_TYPE.RADIO_SELECT,
         required: true,
+        options: [
+            {
+                label: "Male",
+                value: "MALE",
+            },
+            {
+                label: "Female",
+                value: "FEMALE",
+            },
+        ],
     },
     {
         label: "Date of Birth",
@@ -109,7 +119,7 @@ export const PATIENT_DETAIL_FIELDS = [
     },
     {
         label: "Email Address",
-        name: "policyHolderEmail",
+        name: "patientEmail",
         placeholder: "Enter email address",
         type: "text",
         fieldType: FIELD_TYPE.SINGLE_LINE_TEXT,
@@ -120,7 +130,7 @@ export const PATIENT_DETAIL_FIELDS = [
         fields: [
             {
                 label: "Phone Number",
-                name: "policyHolderPhoneCode",
+                name: "patientPhoneCode",
                 fieldType: FIELD_TYPE.DROPDOWN_SELECT,
                 required: true,
                 options: [
@@ -137,7 +147,7 @@ export const PATIENT_DETAIL_FIELDS = [
             {
                 label: "Phone Number",
                 hideLabel: true,
-                name: "policyHolderPhoneNumber",
+                name: "patientPhoneNumber",
                 placeholder: "Enter phone number",
                 type: "number",
                 fieldType: FIELD_TYPE.SINGLE_LINE_TEXT,
@@ -147,7 +157,7 @@ export const PATIENT_DETAIL_FIELDS = [
     },
     {
         label: "Relationship to Policy Holder",
-        name: "relationshipPolicyHolder",
+        name: "relationshipToPolicyHolder",
         placeholder: "Select",
         type: "text",
         fieldType: FIELD_TYPE.DROPDOWN_SELECT,
