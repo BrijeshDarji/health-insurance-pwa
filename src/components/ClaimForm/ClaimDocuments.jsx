@@ -1,8 +1,9 @@
 import React, { memo, } from "react";
 
-import { DocumentContainer, } from "./ClaimDocument.style";
-import { DOCUMENT_TYPES } from "../../helpers/FormFields";
-import FileDrop from "./FileDrop";
+import FileDropzone from "../form_components/FileDropZone";
+
+import { DOCUMENT_TYPES } from "../../assets/constants/Constant";
+import { DocumentContainer } from "./ClaimDocument.style";
 
 function ClaimDocuments(props) {
     const {
@@ -13,23 +14,24 @@ function ClaimDocuments(props) {
         selectedPaymentDocs,
         setSelectedPaymentDocs,
         selectedMedDocs,
-        setSelectedMedDocs } = props
+        setSelectedMedDocs,
+    } = props
 
     const FIELDS_STATES = {
         "CLAIM_DOCUMENTS": {
-            "selecetedFiles": selectedDocs,
+            "selectedFiles": selectedDocs,
             "setSelectedFiles": setSelectedDocs,
         },
         "RECEIPTS": {
-            "selecetedFiles": selectedReceipts,
+            "selectedFiles": selectedReceipts,
             "setSelectedFiles": setSelectedReceipts,
         },
         "PROOF_PAYMENT": {
-            "selecetedFiles": selectedPaymentDocs,
+            "selectedFiles": selectedPaymentDocs,
             "setSelectedFiles": setSelectedPaymentDocs,
         },
         "MEDICAL_REPORTS": {
-            "selecetedFiles": selectedMedDocs,
+            "selectedFiles": selectedMedDocs,
             "setSelectedFiles": setSelectedMedDocs,
         },
     }
@@ -38,8 +40,8 @@ function ClaimDocuments(props) {
         <>
             <DocumentContainer>
                 {DOCUMENT_TYPES.map(type => (
-                    <FileDrop
-                        selectedFiles={FIELDS_STATES[type.id]["selecetedFiles"]}
+                    <FileDropzone
+                        selectedFiles={FIELDS_STATES[type.id]["selectedFiles"]}
                         setSelectedFiles={FIELDS_STATES[type.id]["setSelectedFiles"]}
                         type={type}
                     />

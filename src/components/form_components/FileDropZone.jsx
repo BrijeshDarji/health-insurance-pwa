@@ -1,16 +1,27 @@
 import React, { useCallback, useRef } from 'react'
 import { useDropzone } from "react-dropzone"
-import AddIcon from "@mui/icons-material/Add";
+import { useSnackbar } from 'notistack'
 
+import {
+    AddDocBox,
+    CancelIcon,
+    DocName,
+    FileDropWrapper,
+    PreviewBox,
+    UploadWrapper,
+} from '../ClaimForm/ClaimDocument.style'
+
+import AddIcon from "@mui/icons-material/Add";
 import docPreview from "../../assets/images/doc-preview.png";
-import { AddDocBox, CancelIcon, DocName, FileDropWrapper, PreviewBox, UploadWrapper } from './ClaimDocument.style'
 
 const minBytesFileSize = 0.1
 const maxFileSize = 12
 const maxBytesFileSize = (maxFileSize * 1000000)
 
-const FileDrop = (props) => {
+const FileDropzone = (props) => {
     const { selectedFiles, type, setSelectedFiles } = props
+
+    const { enqueueSnackbar } = useSnackbar()
 
     const selectedFilesRef = useRef()
     selectedFilesRef.current = selectedFiles
@@ -21,11 +32,11 @@ const FileDrop = (props) => {
             const totalFileSize = totalFiles.reduce((previousValue, currentValue) => previousValue + currentValue.size, 0)
 
             if (totalFileSize > maxBytesFileSize) {
-                // enqueueSnackbar(`Total File size is larger than ${maxFileSize} MB.`, { variant: "error" })
+                enqueueSnackbar(`Total File size is larger than ${maxFileSize} MB.`, { variant: "error" })
                 return
             }
             if (totalFileSize < minBytesFileSize) {
-                // enqueueSnackbar(`Total File size is smaller than ${minBytesFileSize} Bytes.`, { variant: "error" })
+                enqueueSnackbar(`Total File size is smaller than ${minBytesFileSize} Bytes.`, { variant: "error" })
                 return
             }
             setSelectedFiles(totalFiles)
@@ -44,7 +55,7 @@ const FileDrop = (props) => {
                 rejectedFile.errors.forEach(error => {
                     //eslint-disable-next-line
                     const errorMessage = getMessage[error.code] || error.message
-                    // enqueueSnackbar(errorMessage, { variant: "error" })
+                    enqueueSnackbar(errorMessage, { variant: "error" })
                 })
             }
         })
@@ -74,11 +85,18 @@ const FileDrop = (props) => {
 
     return (
         <FileDropWrapper>
-            <div className="head-content">{type.label}</div>
+            <div className="head-content">
+                {type.label}
+            </div>
+
             <UploadWrapper>
                 {selectedFiles.map(file => (
                     <PreviewBox>
-                        <img src={docPreview} alt="doc-preview" />
+                        <img
+                            src={docPreview}
+                            alt="doc-preview"
+                        />
+
                         <DocName>
                             {file.name}
 
@@ -94,6 +112,7 @@ const FileDrop = (props) => {
 
             <div {...getRootProps()}>
                 <input {...getInputProps()} />
+
                 <AddDocBox className="upload">
                     <AddIcon />
                 </AddDocBox>
@@ -102,4 +121,4 @@ const FileDrop = (props) => {
     )
 }
 
-export default FileDrop
+export default FileDropzone

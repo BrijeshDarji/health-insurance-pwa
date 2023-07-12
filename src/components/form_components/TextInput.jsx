@@ -1,8 +1,10 @@
 import React from "react";
-import { GlobalInputLabel, GlobalInput } from "./FormComponents.style.js";
+
 import { formAttributes } from "../../helpers/Utils"
 
-function OutlinedTextInput({
+import { GlobalInputLabel, GlobalInput } from "./FormComponents.style.js";
+
+function TextInput({
     label,
     hideLabel = false,
     name,
@@ -33,4 +35,4 @@ function OutlinedTextInput({
     );
 }
 
-export default OutlinedTextInput;
+export default TextInput;

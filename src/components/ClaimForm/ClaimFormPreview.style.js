@@ -18,6 +18,7 @@ export const ClaimPreview = styled.div`
         color: ${(props) => props.theme.palette.siteOrange.main};
     }
 `;
+
 export const CardsWrapper = styled.div`
     width: 100%;
     display: grid;
@@ -26,18 +27,21 @@ export const CardsWrapper = styled.div`
         margin-bottom: 12px;
     }
 `;
+
 export const Wrapper = styled.div`
     margin-bottom: 12px;
     &:last-of-type {
         margin: 0;
     }
 `;
+
 export const LabelClaim = styled.div`
     font-size: 12px;
     line-height: 14px;
     margin-bottom: 4px;
     color: ${(props) => props.theme.palette.otherColors.radioColor};
 `;
+
 export const ValueClaim = styled.div`
     font-size: 16px;
     font-weight: 400;

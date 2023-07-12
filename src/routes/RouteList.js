@@ -6,14 +6,9 @@ import {
     URL_CLAIM,
     URL_CLAIM_SUCCESS,
     URL_WELCOME_SCREEN,
-} from "../helpers/SitePath"
+} from "../assets/constants/SitePath"
 
 export const RouteList = [
-    {
-        path: "/",
-        exact: true,
-        component: WelcomeScreen,
-    },
     {
         path: URL_WELCOME_SCREEN,
         exact: true,

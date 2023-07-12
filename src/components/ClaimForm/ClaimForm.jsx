@@ -2,6 +2,31 @@ import React, { memo, useEffect, useState } from "react";
 import dayjs from 'dayjs';
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
+import { useSnackbar } from 'notistack'
+
+import ClaimPolicyHolderDetails from "./ClaimPolicyHolderDetails";
+import ClaimPatientDetails from "./ClaimPatientDetails";
+import ClaimDescription from "./ClaimDescription";
+import ClaimVisitDetails from "./ClaimVisitDetails";
+import ClaimDocuments from "./ClaimDocuments";
+import ClaimFormPreview from "./ClaimFormPreview";
+
+import { GetFormikObject } from "../../helpers/Utils.js";
+import { ERROR_MESSAGES } from "../../assets/constants/Messages.js";
+import { STEPPER_LABELS } from "../../assets/constants/Constant";
+
+import {
+    URL_CLAIM_SUCCESS,
+    URL_WELCOME_SCREEN,
+} from "../../assets/constants/SitePath.js";
+
+import {
+    DESCRIPTION_OF_CLAIM_FIELDS,
+    PATIENT_DETAIL_FIELDS,
+    POLICY_HOLDER_DETAIL_FIELDS,
+    VISIT_DETAIL_FIELDS,
+} from "../../assets/constants/FormFields.js";
+
 import {
     MainContainer,
     Header,
@@ -17,42 +42,25 @@ import {
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import checkRight from "./../../assets/images/svg/checkRight.svg";
 
-import ClaimPolicyHolderDetails from "./ClaimPolicyHolderDetails";
-import ClaimPatientDetails from "./ClaimPatientDetails";
-import ClaimDescription from "./ClaimDescription";
-import ClaimVisitDetails from "./ClaimVisitDetails";
-import ClaimDocuments from "./ClaimDocuments";
-import ClaimFormPreview from "./ClaimFormPreview";
-
-import { URL_CLAIM_SUCCESS, URL_WELCOME_SCREEN } from "../../helpers/SitePath";
-import { GetFormikObject } from "../../helpers/Utils.js";
-
-import {
-    PATIENT_DETAIL_FIELDS,
-    POLICY_HOLDER_DETAIL_FIELDS,
-} from "../../helpers/FormFields.js";
-
-const stepperLabels = [
-    { id: 1, label: "Policy Details" },
-    { id: 2, label: "Patient Details" },
-    { id: 3, label: "Description of Claim" },
-    { id: 4, label: "Visit Information" },
-    { id: 5, label: "Documents" },
-];
-
 function ClaimForm() {
     const navigate = useNavigate();
+    const { enqueueSnackbar } = useSnackbar()
 
     const [selectedDocs, setSelectedDocs] = useState([])
     const [selectedReceipts, setSelectedReceipts] = useState([])
     const [selectedPaymentDocs, setSelectedPaymentDocs] = useState([])
     const [selectedMedDocs, setSelectedMedDocs] = useState([])
+
     const [activeStep, setActiveStep] = useState(1);
     const [formikObj1, setFormikObj1] = useState({})
     const [formikObj2, setFormikObj2] = useState({})
+    const [formikObj3, setFormikObj3] = useState({})
+    const [formikObj4, setFormikObj4] = useState({})
 
     const formValidator1 = useFormik(formikObj1)
     const formValidator2 = useFormik(formikObj2)
+    const formValidator3 = useFormik(formikObj3)
+    const formValidator4 = useFormik(formikObj4)
 
     useEffect(() => {
         const defaultValues = {
@@ -61,6 +69,7 @@ function ClaimForm() {
             "gender": "MALE",
             "relationshipToPolicyHolder": "MY_SELF",
             "dateOfBirth": dayjs().format("MM/DD/YYYY"),
+            "dateOfVisit": dayjs().format("MM/DD/YYYY"),
         }
         handleFormikValues(defaultValues)
         // eslint-disable-next-line
@@ -69,6 +78,8 @@ function ClaimForm() {
     const handleFormikValues = (rows = {}) => {
         setUpFormik(POLICY_HOLDER_DETAIL_FIELDS, setFormikObj1, rows)
         setUpFormik(PATIENT_DETAIL_FIELDS, setFormikObj2, rows)
+        setUpFormik(DESCRIPTION_OF_CLAIM_FIELDS, setFormikObj3, rows)
+        setUpFormik(VISIT_DETAIL_FIELDS, setFormikObj4, rows)
     }
 
     const setUpFormik = (fields, setter, rows) => {
@@ -85,22 +96,24 @@ function ClaimForm() {
                 return <ClaimPatientDetails formik={formValidator2} />;
 
             case 3:
-                return <ClaimDescription />;
+                return <ClaimDescription formik={formValidator3} />;
 
             case 4:
-                return <ClaimVisitDetails />;
+                return <ClaimVisitDetails formik={formValidator4} />;
 
             case 5:
-                return <ClaimDocuments
-                    selectedDocs={selectedDocs}
-                    setSelectedDocs={setSelectedDocs}
-                    selectedReceipts={selectedReceipts}
-                    setSelectedReceipts={setSelectedReceipts}
-                    selectedPaymentDocs={selectedPaymentDocs}
-                    setSelectedPaymentDocs={setSelectedPaymentDocs}
-                    selectedMedDocs={selectedMedDocs}
-                    setSelectedMedDocs={setSelectedMedDocs}
-                />;
+                return (
+                    <ClaimDocuments
+                        selectedDocs={selectedDocs}
+                        setSelectedDocs={setSelectedDocs}
+                        selectedReceipts={selectedReceipts}
+                        setSelectedReceipts={setSelectedReceipts}
+                        selectedPaymentDocs={selectedPaymentDocs}
+                        setSelectedPaymentDocs={setSelectedPaymentDocs}
+                        selectedMedDocs={selectedMedDocs}
+                        setSelectedMedDocs={setSelectedMedDocs}
+                    />
+                );
 
             case 6:
                 return <ClaimFormPreview />;
@@ -113,7 +126,8 @@ function ClaimForm() {
     const goToPreviousPage = () => {
         if (activeStep === 1) {
             navigate(URL_WELCOME_SCREEN);
-        } else {
+        }
+        else {
             setActiveStep(activeStep - 1);
         }
     };
@@ -124,6 +138,7 @@ function ClaimForm() {
                 formValidator1.handleSubmit()
 
                 if (!formValidator1.isValid) {
+                    enqueueSnackbar(ERROR_MESSAGES.ALL_REQUIRED, { variant: "error" })
                     return
                 }
                 break
@@ -133,6 +148,40 @@ function ClaimForm() {
                 formValidator2.handleSubmit()
 
                 if (!formValidator2.isValid) {
+                    enqueueSnackbar(ERROR_MESSAGES.ALL_REQUIRED, { variant: "error" })
+                    return
+                }
+                break
+            }
+
+            case 3: {
+                formValidator3.handleSubmit()
+
+                if (!formValidator3.isValid) {
+                    enqueueSnackbar(ERROR_MESSAGES.ALL_REQUIRED, { variant: "error" })
+                    return
+                }
+                break
+            }
+
+            case 4: {
+                formValidator4.handleSubmit()
+
+                if (!formValidator4.isValid) {
+                    enqueueSnackbar(ERROR_MESSAGES.ALL_REQUIRED, { variant: "error" })
+                    return
+                }
+                break
+            }
+
+            case 5: {
+                if (
+                    !selectedDocs.length &&
+                    !selectedReceipts.length &&
+                    !selectedPaymentDocs.length &&
+                    !selectedMedDocs.length
+                ) {
+                    enqueueSnackbar(ERROR_MESSAGES.DOCUMENTS.ADD_DOCUMENT, { variant: "error" })
                     return
                 }
                 break
@@ -151,7 +200,6 @@ function ClaimForm() {
     return (
         <MainContainer>
             {/* Main header */}
-
             <Header>
                 <ArrowBackIcon
                     onClick={goToPreviousPage}
@@ -165,51 +213,68 @@ function ClaimForm() {
             {activeStep <= 5 && (
                 <StepperHeader>
                     <Steps>
-                        {stepperLabels.map((items) => (
+                        {STEPPER_LABELS.map((items) => (
                             <StepsDigit
                                 className={items.id <= activeStep && "active"}
                                 key={items.id}
                             >
-                                {items.id < activeStep ? (
-                                    <span className="icon">
-                                        <img
-                                            src={checkRight}
-                                            alt="check-right"
-                                        />
-                                    </span>
-                                ) : (
-                                    <span>{items.id}</span>
-                                )}
+                                {items.id < activeStep
+                                    ? (
+                                        <span className="icon">
+                                            <img
+                                                src={checkRight}
+                                                alt="check-right"
+                                            />
+                                        </span>
+                                    )
+                                    : (
+                                        <span>{items.id}</span>
+                                    )
+                                }
                             </StepsDigit>
                         ))}
                     </Steps>
 
-                    {stepperLabels.map(
-                        (items) =>
-                            activeStep === items.id && (
-                                <p key={items.id}>{items.label}</p>
-                            )
+                    {STEPPER_LABELS.map((items) =>
+                        activeStep === items.id && (
+                            <p key={items.id}>{items.label}</p>
+                        )
                     )}
                 </StepperHeader>
             )}
+
             <FormsContainer className={activeStep > 5 && "claim-preview"}>
                 {getStepContent()}
             </FormsContainer>
+
             {/* Back and Next Buttons */}
             <BtnGroup>
-                <BackButton variant="contained" onClick={goToPreviousPage}>
+                <BackButton
+                    variant="contained"
+                    onClick={goToPreviousPage}
+                >
                     Back
                 </BackButton>
-                {activeStep === 6 ? (
-                    <NextButton variant="contained" onClick={handleSubmit}>
-                        {" "}
-                        Submit
-                    </NextButton>
-                ) : (
-                    <NextButton variant="contained" onClick={goToNextPage}>
-                        {activeStep === 5 ? "Preview" : "Next"}
-                    </NextButton>
-                )}
+
+                {activeStep === 6
+                    ? (
+                        <NextButton
+                            variant="contained"
+                            onClick={handleSubmit}
+                        >
+                            {" "}
+                            Submit
+                        </NextButton>
+                    )
+                    : (
+                        <NextButton
+                            variant="contained"
+                            onClick={goToNextPage}
+                        >
+                            {activeStep === 5 ? "Preview" : "Next"}
+                        </NextButton>
+                    )
+                }
             </BtnGroup>
         </MainContainer>
     );

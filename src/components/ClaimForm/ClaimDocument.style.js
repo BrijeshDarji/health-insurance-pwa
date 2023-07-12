@@ -12,12 +12,14 @@ export const DocumentContainer = styled.div`
         margin: 0;
     }
 `;
+
 export const UploadWrapper = styled.div`
     width: 100%;
     display: flex;
     flex-direction:column;
     gap: 16px;
 `;
+
 export const PreviewBox = styled.div`
     height: 50px;
     display: flex;
@@ -30,7 +32,7 @@ export const PreviewBox = styled.div`
 `;
 
 export const AddDocBox = styled.div`
-width: 50px;
+    width: 50px;
     height: 50px;
     display: flex;
     align-items: center;
