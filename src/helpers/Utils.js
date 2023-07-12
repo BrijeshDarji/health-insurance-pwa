@@ -2,10 +2,13 @@ import * as Yup from "yup"
 
 import OutlinedSelect from "../components/form_components/OutlinedSelect";
 import OutlinedTextInput from "../components/form_components/OutlinedTextInput";
+import OutlinedRadioButton from "../components/form_components/OutlinedRadioButton";
 
 import { PhoneGroup } from "../components/ClaimForm/ClaimForm.style";
 
 import { FIELD_TYPE } from "./FormFields";
+import OutlinedDatePicker from "../components/form_components/OutlinedDatePicker";
+import OutlinedTextarea from "../components/form_components/OutlinedTextarea";
 
 export const formAttributes = (props, name, helperText) => ({
     id: name,
@@ -74,6 +77,42 @@ export const getDynamicElements = (
             )
             break
 
+        case FIELD_TYPE.RADIO_SELECT:
+            element = (
+                <OutlinedRadioButton
+                    label={field.label}
+                    formik={formik}
+                    name={field.name}
+                    placeholder={field.placeholder}
+                    options={field.options}
+                    required={field.required}
+                />
+            )
+            break
+        case FIELD_TYPE.DATE_PICKER:
+            element = (
+                <OutlinedDatePicker
+                    label={field.label}
+                    formik={formik}
+                    name={field.name}
+                    placeholder={field.placeholder}
+                    required={field.required}
+                />
+            )
+            break
+
+        case FIELD_TYPE.TEXTAREA:
+            element = (
+                <OutlinedTextarea
+                    label={field.label}
+                    formik={formik}
+                    name={field.name}
+                    placeholder={field.placeholder}
+                    required={field.required}
+                />
+            )
+            break
+
         default:
             break
     }
@@ -97,6 +136,7 @@ const setFieldType = (field, fieldType, schema, initialValues, rowsToEdit) => {
         fieldType =
             Yup
                 .string()
+            .trim()
                 .matches(/^[a-zA-Z0-9 _-]*$/, {
                     message: "Only alphanumeric, underscore(_), and hyphen(-) are allowed.",
                 })
@@ -105,18 +145,23 @@ const setFieldType = (field, fieldType, schema, initialValues, rowsToEdit) => {
 
     }
     else if (["policyHolderEmail"].includes(field.name)) {
-        //eslint-disable-next-line
-        fieldType = Yup.string().matches(/^([a-zA-Z0-9_\-\.\+]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/, {
-            message: "Enter valid email address.",
-        })
-        setValueInSchema()
+        fieldType =
+            Yup
+                .string()
+                .trim()
+                //eslint-disable-next-line
+            .matches(/^([a-zA-Z0-9_\-\.\+]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/, {
+                message: "Enter valid email address.",
+            })
 
+        setValueInSchema()
     }
     else if (["policyHolderPhoneNumber"].includes(field.name)) {
         fieldType = Yup
             .string()
-            .min(10, 'Please enter valid number')
-            .max(10, 'Please enter valid number')
+            .trim()
+            .min(10, 'Please enter 10 digit valid number')
+            .max(10, 'Please enter 10 digit valid number')
 
         setValueInSchema()
     }

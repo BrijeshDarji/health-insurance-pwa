@@ -31,6 +31,12 @@ export const WelcomeContainer = styled.div`
     ${(props) => props.theme.mixins.flex("center", "flex-end")};
 
     flex-direction: column;
+
+    &.claim-success{
+      background: none;
+      justify-content: flex-start;
+      padding-top: 63px;
+    }
   `;
 
 export const TextMain = styled.p`
@@ -40,6 +46,9 @@ export const TextMain = styled.p`
     line-height: 33px;
     letter-spacing: 0em;
     margin: 100px 0 16px 0;
+    &.claim-success{
+      margin: 34px 0 16px 0;
+    }
   `;
 
 export const TextSub = styled.p`
@@ -51,4 +60,7 @@ export const TextSub = styled.p`
     text-align: center;
     margin-bottom: 61px;
     color: ${(props) => props.theme.palette.primary.subText};
+    &.claim-success{
+      margin-bottom: 34px;
+    }
   `;

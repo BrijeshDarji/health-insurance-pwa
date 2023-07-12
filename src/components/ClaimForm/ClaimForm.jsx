@@ -10,9 +10,12 @@ import {
     BackButton,
     NextButton,
     FormsContainer,
+    Steps,
+    StepsDigit,
 } from "./ClaimForm.style.js";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import checkRight from "./../../assets/images/svg/checkRight.svg";
 
 import ClaimPolicyHolderDetails from "./ClaimPolicyHolderDetails";
 import ClaimPatientDetails from "./ClaimPatientDetails";
@@ -24,6 +27,14 @@ import ClaimFormPreview from "./ClaimFormPreview";
 import { URL_CLAIM_SUCCESS, URL_WELCOME_SCREEN } from "../../helpers/SitePath";
 import { GetFormikObject } from "../../helpers/Utils.js";
 import { POLICY_HOLDER_DETAIL_FIELDS } from "../../helpers/FormFields.js";
+
+const stepperLabels = [
+    { id: 1, label: "Policy Details" },
+    { id: 2, label: "Patient Details" },
+    { id: 3, label: "Description of Claim" },
+    { id: 4, label: "Visit Information" },
+    { id: 5, label: "Documents" },
+];
 
 function ClaimForm() {
     const navigate = useNavigate();
@@ -106,14 +117,44 @@ function ClaimForm() {
     return (
         <MainContainer>
             {/* Main header */}
+
             <Header>
                 <ArrowBackIcon />
-                <p>Claim</p>
+                <p>{activeStep <= 5 ? "Claim" : "Preview"}</p>
             </Header>
-            <StepperHeader>
-                <p>Policy Details</p>
-            </StepperHeader>
-            <FormsContainer>{getStepContent()}</FormsContainer>
+            {activeStep <= 5 && (
+                <StepperHeader>
+                    <Steps>
+                        {stepperLabels.map((items) => (
+                            <StepsDigit
+                                className={items.id <= activeStep && "active"}
+                                key={items.id}
+                            >
+                                {items.id < activeStep ? (
+                                    <span className="icon">
+                                        <img
+                                            src={checkRight}
+                                            alt="check-right"
+                                        />
+                                    </span>
+                                ) : (
+                                    <span>{items.id}</span>
+                                )}
+                            </StepsDigit>
+                        ))}
+                    </Steps>
+
+                    {stepperLabels.map(
+                        (items) =>
+                            activeStep === items.id && (
+                                <p key={items.id}>{items.label}</p>
+                            )
+                    )}
+                </StepperHeader>
+            )}
+            <FormsContainer className={activeStep > 5 && "claim-preview"}>
+                {getStepContent()}
+            </FormsContainer>
             {/* Back and Next Buttons */}
             <BtnGroup>
                 <BackButton variant="contained" onClick={goToPreviousPage}>

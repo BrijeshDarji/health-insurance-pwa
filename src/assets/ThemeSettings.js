@@ -29,7 +29,9 @@ export const siteColors = {
         borderLight: "#B1B5D2",
         borderSemiLight: "#F0F2FC",
         borderInput: "#E9E9E9",
-        radioColor: "#B0B0B0"
+        radioColor: "#B0B0B0",
+        stepperDefaultLabel: "#F6CBB3",
+        stepperBorder: "#F9E6DC",
     }
 }
 

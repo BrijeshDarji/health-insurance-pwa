@@ -1,9 +1,15 @@
-import React, { memo } from 'react'
+import React, { memo } from "react";
+import { getDynamicElements } from "../../helpers/Utils";
+import { PATIENT_DETAIL_FIELDS } from "../../helpers/FormFields";
 
-function ClaimPatientDetails() {
+function ClaimPatientDetails({ formik = {} }) {
     return (
-        <div>ClaimPatientDetails</div>
-    )
+        <>
+            {PATIENT_DETAIL_FIELDS.map((field, index) => (
+                <div key={index}>{getDynamicElements(field, formik)}</div>
+            ))}
+        </>
+    );
 }
 
-export default memo(ClaimPatientDetails)
+export default memo(ClaimPatientDetails);
