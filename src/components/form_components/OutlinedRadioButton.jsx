@@ -32,8 +32,8 @@ function OutlinedRadioButton({
                 name="row-radio-buttons-group"
                 required={required}
                 disabled={disabled}
-                onChange={handleChange}
                 {...formAttr}
+                onChange={handleChange}
             >
                 {
                     options?.length && (
