@@ -1,6 +1,7 @@
 /**
  *  @description This file contains API helper methods. 
  */
+import axios from "axios"
 
 export const errorHandler = (err) => {
     const statusCode = err?.response?.status
@@ -22,3 +23,21 @@ export const promisifyError = (err) => {
         reject(errorHandler(err))
     })
 }
+
+
+export const postApi = async (url, data) => {
+    try {
+        let config;
+        config = {
+            headers: {}
+        }
+
+        return axios
+            .post(url, data, config)
+            .then((response) => response)
+            .catch(errorHandler)
+    } catch (err) {
+        return promisifyError(err)
+    }
+}
+
