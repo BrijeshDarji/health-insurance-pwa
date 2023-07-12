@@ -54,6 +54,7 @@ export const FormsContainer = styled.div`
     overflow: auto;
     &.claim-preview{
         height: calc(100% - 125px);
+        padding: 0;
     }
     & > p {
         font-family: "sf-pro-display-medium";

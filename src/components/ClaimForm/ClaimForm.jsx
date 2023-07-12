@@ -90,11 +90,12 @@ function ClaimForm() {
             {activeStep <= 5 && (
                 <StepperHeader>
                     <Steps>
-                        {[1, 2, 3, 4, 5].map((items) => (
+                        {stepperLabels.map((items) => (
                             <StepsDigit
-                                className={items <= activeStep && "active"}
+                                className={items.id <= activeStep && "active"}
+                                key={items.id}
                             >
-                                {items < activeStep ? (
+                                {items.id < activeStep ? (
                                     <span className="icon">
                                         <img
                                             src={checkRight}
@@ -102,7 +103,7 @@ function ClaimForm() {
                                         />
                                     </span>
                                 ) : (
-                                    <span>{items}</span>
+                                    <span>{items.id}</span>
                                 )}
                             </StepsDigit>
                         ))}
@@ -110,7 +111,9 @@ function ClaimForm() {
 
                     {stepperLabels.map(
                         (items) =>
-                            activeStep === items.id && <p>{items.label}</p>
+                            activeStep === items.id && (
+                                <p key={items.id}>{items.label}</p>
+                            )
                     )}
                 </StepperHeader>
             )}
