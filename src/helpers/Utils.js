@@ -136,6 +136,7 @@ const setFieldType = (field, fieldType, schema, initialValues, rowsToEdit) => {
         fieldType =
             Yup
                 .string()
+            .trim()
                 .matches(/^[a-zA-Z0-9 _-]*$/, {
                     message: "Only alphanumeric, underscore(_), and hyphen(-) are allowed.",
                 })
@@ -144,18 +145,23 @@ const setFieldType = (field, fieldType, schema, initialValues, rowsToEdit) => {
 
     }
     else if (["policyHolderEmail"].includes(field.name)) {
-        //eslint-disable-next-line
-        fieldType = Yup.string().matches(/^([a-zA-Z0-9_\-\.\+]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/, {
-            message: "Enter valid email address.",
-        })
-        setValueInSchema()
+        fieldType =
+            Yup
+                .string()
+                .trim()
+                //eslint-disable-next-line
+            .matches(/^([a-zA-Z0-9_\-\.\+]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/, {
+                message: "Enter valid email address.",
+            })
 
+        setValueInSchema()
     }
     else if (["policyHolderPhoneNumber"].includes(field.name)) {
         fieldType = Yup
             .string()
-            .min(10, 'Please enter valid number')
-            .max(10, 'Please enter valid number')
+            .trim()
+            .min(10, 'Please enter 10 digit valid number')
+            .max(10, 'Please enter 10 digit valid number')
 
         setValueInSchema()
     }
