@@ -1,4 +1,5 @@
 import React, { memo, useEffect, useState } from "react";
+import dayjs from 'dayjs';
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import {
@@ -25,7 +26,11 @@ import ClaimFormPreview from "./ClaimFormPreview";
 
 import { URL_CLAIM_SUCCESS, URL_WELCOME_SCREEN } from "../../helpers/SitePath";
 import { GetFormikObject } from "../../helpers/Utils.js";
-import { POLICY_HOLDER_DETAIL_FIELDS } from "../../helpers/FormFields.js";
+
+import {
+    PATIENT_DETAIL_FIELDS,
+    POLICY_HOLDER_DETAIL_FIELDS,
+} from "../../helpers/FormFields.js";
 
 const stepperLabels = [
     { id: 1, label: "Policy Details" },
@@ -44,12 +49,18 @@ function ClaimForm() {
     const [selectedMedDocs, setSelectedMedDocs] = useState([])
     const [activeStep, setActiveStep] = useState(1);
     const [formikObj1, setFormikObj1] = useState({})
+    const [formikObj2, setFormikObj2] = useState({})
 
     const formValidator1 = useFormik(formikObj1)
+    const formValidator2 = useFormik(formikObj2)
 
     useEffect(() => {
         const defaultValues = {
             "policyHolderPhoneCode": "+91",
+            "patientPhoneCode": "+91",
+            "gender": "MALE",
+            "relationshipToPolicyHolder": "MY_SELF",
+            "dateOfBirth": dayjs().format("MM/DD/YYYY"),
         }
         handleFormikValues(defaultValues)
         // eslint-disable-next-line
@@ -57,6 +68,7 @@ function ClaimForm() {
 
     const handleFormikValues = (rows = {}) => {
         setUpFormik(POLICY_HOLDER_DETAIL_FIELDS, setFormikObj1, rows)
+        setUpFormik(PATIENT_DETAIL_FIELDS, setFormikObj2, rows)
     }
 
     const setUpFormik = (fields, setter, rows) => {
@@ -70,7 +82,7 @@ function ClaimForm() {
                 return <ClaimPolicyHolderDetails formik={formValidator1} />;
 
             case 2:
-                return <ClaimPatientDetails />;
+                return <ClaimPatientDetails formik={formValidator2} />;
 
             case 3:
                 return <ClaimDescription />;
@@ -108,13 +120,23 @@ function ClaimForm() {
 
     const goToNextPage = () => {
         switch (activeStep) {
-            case 1:
+            case 1: {
                 formValidator1.handleSubmit()
 
                 if (!formValidator1.isValid) {
                     return
                 }
                 break
+            }
+
+            case 2: {
+                formValidator2.handleSubmit()
+
+                if (!formValidator2.isValid) {
+                    return
+                }
+                break
+            }
 
             default:
                 break

@@ -5,6 +5,8 @@ export const MainContainer = styled.div`
     height: 100vh;
     width: 100%;
     color: ${(props) => props.theme.palette.primary.main};
+    max-width: 720px;
+    margin: 0 auto;
 `;
 export const Header = styled.div`
     height: 52px;
@@ -77,9 +79,12 @@ export const BtnGroup = styled.div`
 export const PhoneGroup = styled.div`
     display: grid;
     grid-template-columns: auto auto;
-    align-items: flex-end;
+    align-items: flex-start;
     width: 100%;
     gap: 0 8px;
+    & > div:last-of-type{
+        margin-top: 17px;
+    }
 `;
 
 export const NextButton = styled(Button)({
@@ -109,6 +114,10 @@ export const BackButton = styled(Button)(({ theme }) => ({
     backgroundColor: theme.palette.otherColors.borderSemiLight,
     fontFamily: ["sf-pro-display-medium"].join(","),
     '&:active': {
+        backgroundColor: theme.palette.otherColors.borderSemiLight,
+    },
+    '&:hover': {
+        boxShadow: "none",
         backgroundColor: theme.palette.otherColors.borderSemiLight,
     },
     '&:focus': {

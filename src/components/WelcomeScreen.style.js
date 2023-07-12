@@ -13,6 +13,7 @@ export const GlobalButton = styled(Button)({
   width: "100%",
   display: "flex",
   justifyContent: "center",
+  maxWidth: "500px",
   fontFamily: ["sf-pro-display-regular"].join(","),
   "& > span, & > p": {
     marginLeft: "auto",
@@ -22,9 +23,9 @@ export const GlobalButton = styled(Button)({
 export const WelcomeContainer = styled.div`
     height: 100vh;
     width: 100%;
-    background: url(${bgWelcome}) no-repeat top left;
-    background-size: 71%;
     padding: 0 24px 20px 24px;
+    position: relative;
+    overflow: hidden;
 
     color: ${(props) => props.theme.palette.primary.main};
 
@@ -32,10 +33,32 @@ export const WelcomeContainer = styled.div`
 
     flex-direction: column;
 
+    &::before{
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: url(${bgWelcome}) no-repeat top left;
+      background-size: 71%;
+      transition: 0.12s ease-in-out;
+    }
+    &.animated.active{
+      &::before{
+        left: -40%;
+        top: -40%;
+        transition: 0.12s ease-in-out;
+      }
+    }
+    
     &.claim-success{
       background: none;
       justify-content: flex-start;
       padding-top: 63px;
+      &::before{
+        content: unset;
+      }
     }
   `;
 
@@ -59,6 +82,7 @@ export const TextSub = styled.p`
     letter-spacing: 0em;
     text-align: center;
     margin-bottom: 61px;
+    max-width: 500px;
     color: ${(props) => props.theme.palette.primary.subText};
     &.claim-success{
       margin-bottom: 34px;

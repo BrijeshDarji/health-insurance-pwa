@@ -40,15 +40,29 @@ export const GlobalInput = styled(TextField)(({ theme }) => ({
     marginBottom: 18,
     border: 0,
     color: theme.palette.primary.main,
-    "&.Mui-focused": {
+    "& .Mui-focused": {
+        outline: "none",
+        border: 0,
         borderColor: theme.palette.otherColors.borderInput,
     },
     "& .MuiInputBase-input": {
+        outline: "none",
         fontFamily: ["sf-pro-display-regular"].join(","),
         padding: "14px 17px",
     },
     "& .MuiInputBase-root": {
         borderRadius: 8,
+    },
+    '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+            borderColor: theme.palette.otherColors.borderInput,
+        },
+        '&:hover fieldset': {
+            borderColor: theme.palette.otherColors.borderInput,
+        },
+        '&.Mui-focused fieldset': {
+            borderColor: theme.palette.otherColors.borderInput,
+        },
     },
     "& .Mui-error": {
         fontFamily: ["sf-pro-display-regular"].join(","),
@@ -116,6 +130,17 @@ export const GlobalDatePicker = styled(MobileDatePicker)(({ theme }) => ({
         borderRadius: 8,
         outline: "none",
         borderColor: theme.palette.otherColors.borderInput,
+    },
+    '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+            borderColor: theme.palette.otherColors.borderInput,
+        },
+        '&:hover fieldset': {
+            borderColor: theme.palette.otherColors.borderInput,
+        },
+        '&.Mui-focused fieldset': {
+            borderColor: theme.palette.otherColors.borderInput,
+        },
     },
     "& .Mui-error": {
         fontFamily: ["sf-pro-display-regular"].join(","),
