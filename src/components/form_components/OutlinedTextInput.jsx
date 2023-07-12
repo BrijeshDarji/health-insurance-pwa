@@ -1,21 +1,23 @@
 import React from "react";
 import { GlobalInputLabel, GlobalInput } from "./FormComponents.style.js";
-// import { formAttributes } from "../../helpers/Utils"
+import { formAttributes } from "../../helpers/Utils"
 
 function OutlinedTextInput({
     label,
+    hideLabel = false,
     name,
     placeholder,
     disabled,
     type,
     formik,
+    required = false,
 }) {
-    // const formAttr = formAttributes(formik, name)
+    const formAttr = formAttributes(formik, name)
 
     return (
         <div>
             <GlobalInputLabel htmlFor={`outlined-input-for-${name}`}>
-                {label}
+                {hideLabel ? "" : label}
             </GlobalInputLabel>
 
             <GlobalInput
@@ -24,7 +26,8 @@ function OutlinedTextInput({
                 disabled={disabled}
                 placeholder={placeholder}
                 type={type}
-                // {...formAttr}
+                required={required}
+                {...formAttr}
             />
         </div>
     );
