@@ -15,6 +15,7 @@ export const POLICY_HOLDER_DETAIL_FIELDS = [
         placeholder: "Enter first name",
         type: "text",
         fieldType: FIELD_TYPE.SINGLE_LINE_TEXT,
+        required: true,
     },
     {
         label: "Last Name",
@@ -22,13 +23,15 @@ export const POLICY_HOLDER_DETAIL_FIELDS = [
         placeholder: "Enter last name",
         type: "text",
         fieldType: FIELD_TYPE.SINGLE_LINE_TEXT,
+        required: true,
     },
     {
-        label: "Policy number",
+        label: "Policy Number",
         name: "policyNumber",
         placeholder: "Enter policy number",
         type: "text",
         fieldType: FIELD_TYPE.SINGLE_LINE_TEXT,
+        required: true,
     },
     {
         label: "Email Address",
@@ -36,21 +39,35 @@ export const POLICY_HOLDER_DETAIL_FIELDS = [
         placeholder: "Enter email address",
         type: "text",
         fieldType: FIELD_TYPE.SINGLE_LINE_TEXT,
+        required: true,
     },
     {
         fieldType: FIELD_TYPE.PHONE_GROUP,
         fields: [
             {
+                label: "Phone Number",
                 name: "policyHolderPhoneCode",
-                // placeholder: "Enter phone number",
-                // type: "number",
                 fieldType: FIELD_TYPE.DROPDOWN_SELECT,
+                required: true,
+                options: [
+                    {
+                        label: "+91",
+                        value: "+91",
+                    },
+                    {
+                        label: "+1",
+                        value: "+1",
+                    },
+                ]
             },
             {
+                label: "Phone Number",
+                hideLabel: true,
                 name: "policyHolderPhoneNumber",
                 placeholder: "Enter phone number",
                 type: "number",
                 fieldType: FIELD_TYPE.SINGLE_LINE_TEXT,
+                required: true,
             },
         ]
     },

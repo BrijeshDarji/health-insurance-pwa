@@ -1,3 +1,5 @@
+import * as Yup from "yup"
+
 import OutlinedSelect from "../components/form_components/OutlinedSelect";
 import OutlinedTextInput from "../components/form_components/OutlinedTextInput";
 
@@ -31,10 +33,12 @@ export const getDynamicElements = (
             element = (
                 <OutlinedTextInput
                     label={field.label}
+                    hideLabel={field.hideLabel}
                     formik={formik}
                     name={field.name}
                     placeholder={field.placeholder}
                     type={field.type}
+                    required={field.required}
                 />
             )
             break
@@ -64,6 +68,8 @@ export const getDynamicElements = (
                     formik={formik}
                     name={field.name}
                     placeholder={field.placeholder}
+                    options={field.options}
+                    required={field.required}
                 />
             )
             break
@@ -72,4 +78,76 @@ export const getDynamicElements = (
             break
     }
     return element
+}
+
+const setFieldType = (field, fieldType, schema, initialValues, rowsToEdit) => {
+    const setValueInSchema = () => {
+        if (field.name) {
+            initialValues[field.name] = rowsToEdit[field.name] || ""
+            schema[field.name] = fieldType
+        }
+    }
+
+    if ([
+        "policyHolderFirstName",
+        "policyHolderLastName",
+        "policyNumber",
+    ].includes(field.name)) {
+
+        fieldType =
+            Yup
+                .string()
+                .matches(/^[a-zA-Z0-9 _-]*$/, {
+                    message: "Only alphanumeric, underscore(_), and hyphen(-) are allowed.",
+                })
+
+        setValueInSchema()
+
+    }
+    else if (["policyHolderEmail"].includes(field.name)) {
+        //eslint-disable-next-line
+        fieldType = Yup.string().matches(/^([a-zA-Z0-9_\-\.\+]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/, {
+            message: "Enter valid email address.",
+        })
+        setValueInSchema()
+
+    }
+    else if (["policyHolderPhoneNumber"].includes(field.name)) {
+        fieldType = Yup
+            .string()
+            .min(10, 'Please enter valid number')
+            .max(10, 'Please enter valid number')
+
+        setValueInSchema()
+    }
+    else if (field.fieldType === FIELD_TYPE.PHONE_GROUP) {
+        field.fields.forEach(fieldData => {
+            setFieldType(fieldData, fieldType, schema, initialValues, rowsToEdit)
+        })
+    }
+
+    if (field.required) {
+        fieldType = fieldType.required(
+            `${(field.label || field.name)} is required.`
+        )
+        setValueInSchema()
+    }
+}
+
+export const GetFormikObject = (fields, rowsToEdit = {}) => {
+    const initialValues = {}
+    const schema = {}
+
+    fields.forEach((field) => {
+        let fieldType = Yup.mixed()
+        setFieldType(field, fieldType, schema, initialValues, rowsToEdit)
+    })
+
+    const formikObj = {
+        "initialValues": initialValues,
+        "validationSchema": Yup.object().shape(schema),
+        "enableReinitialize": true,
+        "validateOnMount": true,
+    }
+    return formikObj
 }

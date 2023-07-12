@@ -1,12 +1,24 @@
 import React from "react";
-import { GlobalInputLabel, GlobalSelect } from "./FormComponents.style.js";
-import { MenuItem } from "@mui/material";
+import MenuItem from "@mui/material/MenuItem";
 
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-// import { formAttributes } from "../../helpers/Utils"
+import { GlobalInput, GlobalInputLabel, } from "./FormComponents.style.js";
 
-function OutlinedSelect({ label, name, placeholder, disabled, formik }) {
-    // const formAttr = formAttributes(formik, name)
+import { formAttributes } from "../../helpers/Utils.js";
+
+function OutlinedSelect({
+    label,
+    name,
+    placeholder,
+    disabled,
+    formik,
+    options,
+    required = false,
+}) {
+    const formAttr = formAttributes(formik, name)
+
+    const handleChange = (e) => {
+        formik.setFieldValue && formik.setFieldValue(name, e.target?.value || "")
+    }
 
     return (
         <div>
@@ -14,23 +26,39 @@ function OutlinedSelect({ label, name, placeholder, disabled, formik }) {
                 {label}
             </GlobalInputLabel>
 
-            <GlobalSelect
-                value="10"
+            <GlobalInput
+                color="primary"
                 fullWidth
+                select
                 disabled={disabled}
                 placeholder={placeholder}
-                color="primary"
-                displayEmpty
-                inputProps={{ "aria-label": "Without label" }}
-                IconComponent={ExpandMoreIcon}
+                {...formAttr}
+                defaultValue=""
+                required={required}
+                value={
+                    options?.length
+                        ? formik?.values?.[name] || ""
+                        : ""
+                }
+                onChange={handleChange}
             >
-                <MenuItem value="">
-                    <em>None</em>
-                </MenuItem>
-                <MenuItem value={10}>+1</MenuItem>
-                <MenuItem value={20}>+91</MenuItem>
-                <MenuItem value={30}>+23</MenuItem>
-            </GlobalSelect>
+                {
+                    options?.length
+                        ? options.map((data) => (
+                            <MenuItem
+                                value={data.value || data.label}
+                                key={data.label}
+                            >
+                                {data.label}
+                            </MenuItem>
+                        ))
+                        : (
+                            <MenuItem disabled={true}>
+                                No Items
+                            </MenuItem>
+                        )
+                }
+            </GlobalInput>
         </div>
     );
 }
