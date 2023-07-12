@@ -1,15 +1,14 @@
 import React from "react";
 import dayjs from 'dayjs';
-
-import { GlobalDatePicker, GlobalInputLabel } from "./FormComponents.style.js";
-
-import { formAttributes } from "../../helpers/Utils.js";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
+import { formAttributes } from "../../helpers/Utils.js";
+
+import { GlobalDatePicker, GlobalInputLabel } from "./FormComponents.style.js";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 
-function OutlinedDatePicker({
+function DatePicker({
     label,
     name,
     disabled,
@@ -58,4 +57,4 @@ function OutlinedDatePicker({
     );
 }
 
-export default OutlinedDatePicker;
+export default DatePicker;

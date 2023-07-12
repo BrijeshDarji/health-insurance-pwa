@@ -8,6 +8,7 @@ export const MainContainer = styled.div`
     max-width: 720px;
     margin: 0 auto;
 `;
+
 export const Header = styled.div`
     height: 52px;
     width: 100%;
@@ -29,6 +30,7 @@ export const Header = styled.div`
         margin: 0 auto;
     }
 `;
+
 export const StepperHeader = styled.div`
     height: 50px;
     width: 100%;
@@ -49,6 +51,7 @@ export const StepperHeader = styled.div`
         text-align: center;
     }
 `;
+
 export const FormsContainer = styled.div`
     height: calc(100% - 175px);
     width: 100%;
@@ -67,6 +70,7 @@ export const FormsContainer = styled.div`
         margin-left: auto;
     }
 `;
+
 export const BtnGroup = styled.div`
     display: flex;
     align-items: center;

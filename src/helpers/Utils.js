@@ -1,14 +1,18 @@
+/**
+ *  @description This file contains helper methods. 
+ */
+
 import * as Yup from "yup"
 
-import OutlinedSelect from "../components/form_components/OutlinedSelect";
-import OutlinedTextInput from "../components/form_components/OutlinedTextInput";
-import OutlinedRadioButton from "../components/form_components/OutlinedRadioButton";
+import DropDown from "../components/form_components/DropDown";
+import TextInput from "../components/form_components/TextInput";
+import RadioButton from "../components/form_components/RadioButton";
+import DatePicker from "../components/form_components/DatePicker";
+import Textarea from "../components/form_components/Textarea";
+
+import { FIELD_TYPE } from "../assets/constants/Constant";
 
 import { PhoneGroup } from "../components/ClaimForm/ClaimForm.style";
-
-import { FIELD_TYPE } from "./FormFields";
-import OutlinedDatePicker from "../components/form_components/OutlinedDatePicker";
-import OutlinedTextarea from "../components/form_components/OutlinedTextarea";
 
 export const formAttributes = (props, name, helperText) => ({
     id: name,
@@ -34,7 +38,7 @@ export const getDynamicElements = (
     switch (field.fieldType) {
         case FIELD_TYPE.SINGLE_LINE_TEXT: {
             element = (
-                <OutlinedTextInput
+                <TextInput
                     label={field.label}
                     hideLabel={field.hideLabel}
                     formik={formik}
@@ -66,7 +70,7 @@ export const getDynamicElements = (
 
         case FIELD_TYPE.DROPDOWN_SELECT:
             element = (
-                <OutlinedSelect
+                <DropDown
                     label={field.label}
                     formik={formik}
                     name={field.name}
@@ -79,7 +83,7 @@ export const getDynamicElements = (
 
         case FIELD_TYPE.RADIO_SELECT:
             element = (
-                <OutlinedRadioButton
+                <RadioButton
                     label={field.label}
                     formik={formik}
                     name={field.name}
@@ -91,7 +95,7 @@ export const getDynamicElements = (
             break
         case FIELD_TYPE.DATE_PICKER:
             element = (
-                <OutlinedDatePicker
+                <DatePicker
                     label={field.label}
                     formik={formik}
                     name={field.name}
@@ -104,7 +108,7 @@ export const getDynamicElements = (
 
         case FIELD_TYPE.TEXTAREA:
             element = (
-                <OutlinedTextarea
+                <Textarea
                     label={field.label}
                     formik={formik}
                     name={field.name}

@@ -1,11 +1,11 @@
 import React from "react";
+import { FormControlLabel, Radio } from "@mui/material";
+
+import { formAttributes } from "../../helpers/Utils.js";
 
 import { GlobalInputLabel, GlobalRadioGroup } from "./FormComponents.style.js";
 
-import { formAttributes } from "../../helpers/Utils.js";
-import { FormControlLabel, Radio } from "@mui/material";
-
-function OutlinedRadioButton({
+function RadioButton({
     label,
     name,
     disabled,
@@ -52,4 +52,4 @@ function OutlinedRadioButton({
     );
 }
 
-export default OutlinedRadioButton;
+export default RadioButton;

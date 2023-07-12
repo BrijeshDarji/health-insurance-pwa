@@ -1,7 +1,7 @@
-import React, { Fragment, memo } from "react";
+import React, { memo } from "react";
 
-import { POLICY_HOLDER_DETAIL_FIELDS } from "../../helpers/FormFields.js";
 import { getDynamicElements } from "../../helpers/Utils.js";
+import { POLICY_HOLDER_DETAIL_FIELDS } from "../../assets/constants/FormFields.js";
 
 function ClaimPolicyHolderDetails({ formik = {} }) {
     return (

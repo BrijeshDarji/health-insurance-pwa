@@ -3,7 +3,8 @@
  */
 
 import axios from "axios"
-import { promisifyError } from "./ApiHelper"
+
+import { promisifyError } from "../../helpers/ApiHelper"
 
 const BASE_URL = `${process.env.REACT_APP_API_URL}`
 

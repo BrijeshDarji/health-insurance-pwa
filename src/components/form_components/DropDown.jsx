@@ -1,15 +1,15 @@
 import React from "react";
 import MenuItem from "@mui/material/MenuItem";
 
+import { formAttributes } from "../../helpers/Utils.js";
+
 import {
     GlobalInput,
     GlobalInputLabel,
     classes,
 } from "./FormComponents.style.js";
 
-import { formAttributes } from "../../helpers/Utils.js";
-
-function OutlinedSelect({
+function DropDown({
     label,
     name,
     placeholder,
@@ -46,21 +46,24 @@ function OutlinedSelect({
                     className: classes.input,
                 }}
             >
-                {options?.length ? (
-                    options.map((data) => (
-                        <MenuItem
-                            value={data.value || data.label}
-                            key={data.label}
-                        >
-                            {data.label}
-                        </MenuItem>
-                    ))
-                ) : (
-                    <MenuItem disabled={true}>No Items</MenuItem>
-                )}
+                {options?.length
+                    ? (
+                        options.map((data) => (
+                            <MenuItem
+                                value={data.value || data.label}
+                                key={data.label}
+                            >
+                                {data.label}
+                            </MenuItem>
+                        ))
+                    )
+                    : (
+                        <MenuItem disabled={true}>No Items</MenuItem>
+                    )
+                }
             </GlobalInput>
         </div>
     );
 }
 
-export default OutlinedSelect;
+export default DropDown;

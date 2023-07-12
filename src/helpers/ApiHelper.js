@@ -1,6 +1,7 @@
 /**
  *  @description This file contains API helper methods. 
  */
+
 import axios from "axios"
 
 export const errorHandler = (err) => {
