@@ -170,8 +170,9 @@ const setFieldType = (field, fieldType, schema, initialValues, rowsToEdit) => {
         fieldType = Yup
             .string()
             .trim()
-            .min(10, 'Please enter 10 digit valid number')
-            .max(10, 'Please enter 10 digit valid number')
+            .matches(/^\d{10}$/, {
+                message: "Please enter 10 digit valid number.",
+            })
 
         setValueInSchema()
     }

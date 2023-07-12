@@ -82,7 +82,7 @@ export const POLICY_HOLDER_DETAIL_FIELDS = [
                 hideLabel: true,
                 name: "policyHolderPhoneNumber",
                 placeholder: "Enter phone number",
-                type: "number",
+                type: "text",
                 fieldType: FIELD_TYPE.SINGLE_LINE_TEXT,
                 required: true,
             },
@@ -148,7 +148,7 @@ export const PATIENT_DETAIL_FIELDS = [
                 hideLabel: true,
                 name: "patientPhoneNumber",
                 placeholder: "Enter phone number",
-                type: "number",
+                type: "text",
                 fieldType: FIELD_TYPE.SINGLE_LINE_TEXT,
                 required: true,
             },
@@ -165,7 +165,7 @@ export const PATIENT_DETAIL_FIELDS = [
     },
 ]
 
-export const DISCRIPTION_OF_CLAIM_DETAIL_FIELDS = [
+export const DESCRIPTION_OF_CLAIM_FIELDS = [
     {
         label: "Condition",
         name: "condition",
@@ -176,7 +176,7 @@ export const DISCRIPTION_OF_CLAIM_DETAIL_FIELDS = [
     },
 ]
 
-export const VISIT_INFORMATION_DETAIL_FIELDS = [
+export const VISIT_DETAIL_FIELDS = [
     {
         label: "Date of visit",
         name: "dateOfVisit",
@@ -184,6 +184,7 @@ export const VISIT_INFORMATION_DETAIL_FIELDS = [
         type: "text",
         fieldType: FIELD_TYPE.DATE_PICKER,
         required: true,
+        disableFuture: true,
     },
     {
         label: "Location",
