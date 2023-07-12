@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 import {
     WelcomeContainer,
     TextMain,
@@ -11,21 +11,31 @@ import logoWelcome from "../assets/images/svg/logo-welcome.svg";
 import { URL_CLAIM } from "../helpers/SitePath.js";
 
 function WelcomeScreen() {
+    const [animateClass, setAnimateClass] = useState(false);
+
+    setTimeout(() => {
+        setAnimateClass(true);
+    }, 1000);
+
     return (
-        <WelcomeContainer>
+        <WelcomeContainer
+            className={`animated ${animateClass ? "" : "active"}`}
+        >
             <img
                 src={logoWelcome}
                 alt="logo-welcome"
                 width="221px"
                 height="200px"
+                className="welcome-logo"
             />
-            <TextMain>Welcome to Regency</TextMain>
-            <TextSub>
+            <TextMain className="welcome-content">Welcome to Regency</TextMain>
+            <TextSub className="welcome-content">
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry. Lorem Ipsum has been the industry's standard dummy
                 text.
             </TextSub>
             <GlobalButton
+                className="welcome-content"
                 variant="contained"
                 endIcon={<ArrowForwardIcon />}
                 size="24px"

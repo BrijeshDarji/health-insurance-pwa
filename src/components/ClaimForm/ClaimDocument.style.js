@@ -28,6 +28,7 @@ export const PreviewBox = styled.div`
     justify-content: center;
     position: relative;
     border-radius: 8px;
+    cursor: pointer;
     border: 1px solid
         ${(props) => props.theme.palette.otherColors.borderInput};
     & > img {
