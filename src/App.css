@@ -28,12 +28,22 @@
     color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
+.animated .welcome-logo {
+    transform: translate(0px, 0px);
+    transition: 0.12s ease-in-out;
+}
+.animated.active .welcome-logo {
+    transform: translate(0px, 100px);
+    transition: 0.12s ease-in-out;
+}
 
-    to {
-        transform: rotate(360deg);
-    }
+.animated .welcome-content {
+    opacity: 1;
+    transform: translate(0px, 0px);
+    transition: 0.12s ease-in-out;
+}
+.animated.active .welcome-content {
+    opacity: 0.2;
+    transform: translate(0px, 30px);
+    transition: 0.12s ease-in-out;
 }
