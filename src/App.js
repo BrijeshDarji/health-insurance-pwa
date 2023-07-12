@@ -1,6 +1,7 @@
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
 import { ThemeProvider } from '@emotion/react';
+import { SnackbarProvider } from "notistack";
 
 import ErrorBoundary from './components/ErrorBoundary'
 import Routing from './routes/Routing.jsx'
@@ -13,10 +14,16 @@ function App() {
     return (
         <MuiThemeProvider theme={ThemeSettings}>
             <ThemeProvider theme={ThemeSettings}>
-                <ErrorBoundary>
-                    <CssBaseline />
-                    <Routing />
-                </ErrorBoundary>
+                <SnackbarProvider
+                    maxSnack={3}
+                    preventDuplicate
+                    autoHideDuration={3000}
+                >
+                    <ErrorBoundary>
+                        <CssBaseline />
+                        <Routing />
+                    </ErrorBoundary>
+                </SnackbarProvider>
             </ThemeProvider>
         </MuiThemeProvider>
     );
