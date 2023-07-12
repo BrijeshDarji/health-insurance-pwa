@@ -2,10 +2,12 @@ import * as Yup from "yup"
 
 import OutlinedSelect from "../components/form_components/OutlinedSelect";
 import OutlinedTextInput from "../components/form_components/OutlinedTextInput";
+import OutlinedRadioButton from "../components/form_components/OutlinedRadioButton";
 
 import { PhoneGroup } from "../components/ClaimForm/ClaimForm.style";
 
 import { FIELD_TYPE } from "./FormFields";
+import OutlinedDatePicker from "../components/form_components/OutlinedDatePicker";
 
 export const formAttributes = (props, name, helperText) => ({
     id: name,
@@ -69,6 +71,29 @@ export const getDynamicElements = (
                     name={field.name}
                     placeholder={field.placeholder}
                     options={field.options}
+                    required={field.required}
+                />
+            )
+            break
+
+        case FIELD_TYPE.RADIO_SELECT:
+            element = (
+                <OutlinedRadioButton
+                    label={field.label}
+                    formik={formik}
+                    name={field.name}
+                    placeholder={field.placeholder}
+                    required={field.required}
+                />
+            )
+            break
+        case FIELD_TYPE.DATE_PICKER:
+            element = (
+                <OutlinedDatePicker
+                    label={field.label}
+                    formik={formik}
+                    name={field.name}
+                    placeholder={field.placeholder}
                     required={field.required}
                 />
             )
