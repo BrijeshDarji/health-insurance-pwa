@@ -42,8 +42,8 @@ const FileDrop = (props) => {
         rejectedFiles.forEach((rejectedFile) => {
             if (rejectedFile?.errors?.length) {
                 rejectedFile.errors.forEach(error => {
+                    //eslint-disable-next-line
                     const errorMessage = getMessage[error.code] || error.message
-                    console.log(errorMessage, "errorMessage")
                     // enqueueSnackbar(errorMessage, { variant: "error" })
                 })
             }
@@ -74,7 +74,7 @@ const FileDrop = (props) => {
 
     return (
         <FileDropWrapper>
-            <div className="head-content">{type}</div>
+            <div className="head-content">{type.label}</div>
             <UploadWrapper>
                 {selectedFiles.map(file => (
                     <PreviewBox>

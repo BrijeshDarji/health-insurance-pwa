@@ -196,8 +196,8 @@ export const VISIT_INFORMATION_DETAIL_FIELDS = [
 ]
 
 export const DOCUMENT_TYPES = [
-    "Documents",
-    "Receipts",
-    "Proof of Payment",
-    "Medical Reports",
+    { id: "CLAIM_DOCUMENTS", label: "Claim Documents", },
+    { id: "RECEIPTS", label: "Receipts", },
+    { id: "PROOF_PAYMENT", label: "Proof of Payment", },
+    { id: "MEDICAL_REPORTS", label: "Medical Reports", },
 ]

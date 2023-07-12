@@ -42,7 +42,7 @@ function ClaimForm() {
     const [selectedReceipts, setSelectedReceipts] = useState([])
     const [selectedPaymentDocs, setSelectedPaymentDocs] = useState([])
     const [selectedMedDocs, setSelectedMedDocs] = useState([])
-    const [activeStep, setActiveStep] = useState(5);
+    const [activeStep, setActiveStep] = useState(0);
     const [formikObj1, setFormikObj1] = useState({})
 
     const formValidator1 = useFormik(formikObj1)

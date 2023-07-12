@@ -16,19 +16,19 @@ function ClaimDocuments(props) {
         setSelectedMedDocs } = props
 
     const FIELDS_STATES = {
-        "Documents": {
+        "CLAIM_DOCUMENTS": {
             "selecetedFiles": selectedDocs,
             "setSelectedFiles": setSelectedDocs,
         },
-        "Receipts": {
+        "RECEIPTS": {
             "selecetedFiles": selectedReceipts,
             "setSelectedFiles": setSelectedReceipts,
         },
-        "Proof of Payment": {
+        "PROOF_PAYMENT": {
             "selecetedFiles": selectedPaymentDocs,
             "setSelectedFiles": setSelectedPaymentDocs,
         },
-        "Medical Reports": {
+        "MEDICAL_REPORTS": {
             "selecetedFiles": selectedMedDocs,
             "setSelectedFiles": setSelectedMedDocs,
         },
@@ -39,8 +39,8 @@ function ClaimDocuments(props) {
             <DocumentContainer>
                 {DOCUMENT_TYPES.map(type => (
                     <FileDrop
-                        selectedFiles={FIELDS_STATES[type]["selecetedFiles"]}
-                        setSelectedFiles={FIELDS_STATES[type]["setSelectedFiles"]}
+                        selectedFiles={FIELDS_STATES[type.id]["selecetedFiles"]}
+                        setSelectedFiles={FIELDS_STATES[type.id]["setSelectedFiles"]}
                         type={type}
                     />
                 ))}
