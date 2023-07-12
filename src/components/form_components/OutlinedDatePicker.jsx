@@ -7,6 +7,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
+import dayjs from "dayjs";
 
 function OutlinedDatePicker({
     label,
@@ -35,7 +36,7 @@ function OutlinedDatePicker({
                     name="row-radio-buttons-group"
                     required={required}
                     disabled={disabled}
-                    defaultValue=""
+                    defaultValue={dayjs("2022-04-17")}
                     onChange={handleChange}
                     {...formAttr}
                     slotProps={{ textField: { fullWidth: true } }}

@@ -56,6 +56,9 @@ export const WelcomeContainer = styled.div`
       background: none;
       justify-content: flex-start;
       padding-top: 63px;
+      &::before{
+        content: unset;
+      }
     }
   `;
 
