@@ -53,7 +53,6 @@ const FileDropzone = (props) => {
         rejectedFiles.forEach((rejectedFile) => {
             if (rejectedFile?.errors?.length) {
                 rejectedFile.errors.forEach(error => {
-                    //eslint-disable-next-line
                     const errorMessage = getMessage[error.code] || error.message
                     enqueueSnackbar(errorMessage, { variant: "error" })
                 })
@@ -110,13 +109,13 @@ const FileDropzone = (props) => {
                 ))}
             </UploadWrapper>
 
-            <div {...getRootProps()}>
-                <input {...getInputProps()} />
 
-                <AddDocBox className="upload">
+            <AddDocBox className="upload">
+                <div {...getRootProps()}>
+                    <input {...getInputProps()} />
                     <AddIcon />
-                </AddDocBox>
-            </div>
+                </div>
+            </AddDocBox>
         </FileDropWrapper>
     )
 }
