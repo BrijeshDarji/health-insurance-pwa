@@ -1,5 +1,6 @@
-import { Grid } from "@mui/material";
 import React, { memo } from "react";
+import { Grid } from "@mui/material";
+
 import {
     CardsWrapper,
     ClaimPreview,
@@ -8,138 +9,196 @@ import {
     Wrapper,
 } from "./ClaimFormPreview.style";
 
-function ClaimFormPreview() {
+function ClaimFormPreview(props) {
+    const {
+        selectedDocs = [],
+        selectedReceipts = [],
+        selectedPaymentDocs = [],
+        selectedMedDocs = [],
+        policyHolderDetails,
+        patientDetails,
+        claimDescription,
+        claimVisitDetails,
+    } = props
+
+    const DOCUMENTS_DETAILS = {
+        "CLAIM_DOCUMENTS": selectedDocs,
+        "RECEIPTS": selectedReceipts,
+        "PROOF_PAYMENT": selectedPaymentDocs,
+        "MEDICAL_REPORTS": selectedMedDocs,
+    }
+
     const claimPreviewObj = [
         {
             id: 1,
-            formDetail: "Policy Details",
+            formDetails: policyHolderDetails,
+            formName: "Policy Details",
             meta: [
                 {
                     group: [
                         {
                             label: "First Name",
-                            value: "John",
+                            key: "policyHolderFirstName",
                         },
                         {
                             label: "Last Name",
-                            value: "Smith",
+                            key: "policyHolderLastName",
                         },
                     ],
                 },
                 {
                     label: "Policy Number",
-                    value: "12512515512",
+                    key: "policyNumber",
                 },
                 {
                     label: "Email Address",
-                    value: "johnsmith12@gmail.com",
+                    key: "policyHolderEmail",
                 },
                 {
                     label: "Phone Number",
-                    value: "+1-1251-251-1251",
+                    key: "policyHolderPhoneNumber",
                 },
             ],
         },
         {
             id: 2,
-            formDetail: "Patient Details",
+            formDetails: patientDetails,
+            formName: "Patient Details",
             meta: [
                 {
                     group: [
                         {
                             label: "First Name",
-                            value: "John",
+                            key: "patientFirstName",
                         },
                         {
                             label: "Last Name",
-                            value: "Smith",
+                            key: "patientLastName",
                         },
                         {
                             label: "Gender",
-                            value: "Male",
+                            key: "gender",
                         },
                         {
                             label: "Date of Birth",
-                            value: "22/12/1994",
+                            key: "dateOfBirth",
                         },
                     ],
                 },
                 {
-                    label: "Policy Number",
-                    value: "12512515512",
-                },
-                {
                     label: "Email Address",
-                    value: "johnsmith12@gmail.com",
+                    key: "patientEmail",
                 },
                 {
                     label: "Phone Number",
-                    value: "+1-1251-251-1251",
+                    key: "patientPhoneNumber",
                 },
                 {
                     label: "Relationship to Policy Holder",
-                    value: "Wife",
+                    key: "relationshipToPolicyHolder",
                 },
             ],
         },
         {
             id: 3,
-            formDetail: "Description of Claim",
+            formName: "Description of Claim",
+            formDetails: claimDescription,
             meta: [
                 {
-                    label: "Condition",
-                    value: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text",
+                    label: "Claim Condition",
+                    key: "condition",
                 },
             ],
         },
         {
             id: 4,
-            formDetail: "Visit Information",
+            formName: "Visit Information",
+            formDetails: claimVisitDetails,
             meta: [
                 {
                     label: "Date of Visit",
-                    value: "07/07/2023",
+                    key: "dateOfVisit",
                 },
                 {
                     label: "Location",
-                    value: "6201 Harry Hines Blvd, Dallas, TX 75390, United States",
+                    key: "location",
                 },
             ],
         },
         {
             id: 5,
-            formDetail: "Documents",
-            meta: [],
+            formName: "Documents",
+            meta: [
+                {
+                    key: "CLAIM_DOCUMENTS",
+                    label: "Claim Documents"
+                },
+                {
+                    key: "RECEIPTS",
+                    label: "Receipts"
+                },
+                {
+                    key: "PROOF_PAYMENT",
+                    label: "Proof of Payment"
+                },
+                {
+                    key: "MEDICAL_REPORTS",
+                    label: "Medical Reports"
+                },
+            ]
         },
     ];
+
     return (
         <>
-            {claimPreviewObj.map((items) => (
-                <ClaimPreview key={items.id}>
-                    <p className="heading">{items.formDetail}</p>
+            {claimPreviewObj.map((formGroup) => (
+                <ClaimPreview key={formGroup.id}>
+                    <p className="heading">
+                        {formGroup.formName}
+                    </p>
+
                     <CardsWrapper>
-                        {items.meta.map((lists, index) =>
-                            lists.group ? (
-                                <Grid container spacing={0} key={index}>
-                                    {lists.group.map((groups, index) => (
-                                        <Grid item xs={6} md={6} key={index}>
-                                            <Wrapper>
-                                                <LabelClaim>
-                                                    {groups.label}
-                                                </LabelClaim>
-                                                <ValueClaim>
-                                                    {groups.value}
-                                                </ValueClaim>
-                                            </Wrapper>
-                                        </Grid>
-                                    ))}
-                                </Grid>
-                            ) : (
-                                <Wrapper key={index}>
-                                    <LabelClaim>{lists.label}</LabelClaim>
-                                    <ValueClaim>{lists.value}</ValueClaim>
-                                </Wrapper>
-                            )
+                        {formGroup.meta.map((fields, index) =>
+                            fields.group
+                                ? (
+                                    <Grid container spacing={0} key={index}>
+                                        {fields.group.map((field, index) => (
+                                            <Grid item xs={6} md={6} key={index}>
+                                                <Wrapper>
+                                                    <LabelClaim>
+                                                        {field.label}
+                                                    </LabelClaim>
+
+                                                    <ValueClaim>
+                                                        {formGroup.formDetails?.[field.key] || ""}
+                                                    </ValueClaim>
+                                                </Wrapper>
+                                            </Grid>
+                                        ))}
+                                    </Grid>
+                                )
+                                : (
+                                    <>
+                                        {formGroup.formName === "Documents"
+                                            ? (
+                                                <Wrapper key={index}>
+                                                    <LabelClaim>{fields.label}</LabelClaim>
+                                                    {
+                                                        DOCUMENTS_DETAILS[fields.key]?.map(document => (
+                                                            <ValueClaim>{document.name}</ValueClaim>
+                                                        ))
+                                                    }
+                                                </Wrapper>
+                                            )
+                                            : (
+                                                <Wrapper key={index}>
+                                                    <LabelClaim>{fields.label}</LabelClaim>
+                                                    <ValueClaim>{formGroup.formDetails?.[fields.key] || ""}</ValueClaim>
+                                                </Wrapper>
+                                            )
+                                        }
+                                    </>
+                                )
                         )}
                     </CardsWrapper>
                 </ClaimPreview>
