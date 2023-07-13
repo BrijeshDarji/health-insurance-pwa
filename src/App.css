@@ -32,6 +32,7 @@
     transform: translate(0px, 0px);
     transition: 0.12s ease-in-out;
 }
+
 .animated.active .welcome-logo {
     transform: translate(0px, 100px);
     transition: 0.12s ease-in-out;
@@ -42,8 +43,22 @@
     transform: translate(0px, 0px);
     transition: 0.12s ease-in-out;
 }
+
 .animated.active .welcome-content {
     opacity: 0.2;
     transform: translate(0px, 30px);
     transition: 0.12s ease-in-out;
+}
+
+.snackbar__error__icon {
+    margin-right: 8px;
+    font-size: 20px;
+}
+
+.snackbar__action__icon {
+    font-size: 22px;
+}
+
+#notistack-snackbar {
+    width: 84%;
 }
