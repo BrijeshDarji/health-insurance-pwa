@@ -13,6 +13,7 @@ import {
     FileDropWrapper,
     PreviewBox,
     UploadWrapper,
+    style,
 } from '../ClaimForm/ClaimDocument.style'
 
 import AddIcon from "@mui/icons-material/Add";
@@ -95,10 +96,12 @@ const FileDropZone = (props) => {
             <UploadWrapper>
                 {selectedFiles.map(file => (
                     <PreviewBox>
-                        <img
-                            src={docPreview}
-                            alt="doc-preview"
-                        />
+                        <AddDocBox>
+                            <img
+                                src={docPreview}
+                                alt="doc-preview"
+                            />
+                        </AddDocBox>
 
                         <DocName>
                             {file.name}
@@ -114,7 +117,7 @@ const FileDropZone = (props) => {
             </UploadWrapper>
 
             <AddDocBox className="upload">
-                <div {...getRootProps()}>
+                <div style={style.heightFixed} {...getRootProps()}>
                     <input {...getInputProps()} />
                     <AddIcon />
                 </div>

@@ -46,4 +46,5 @@ export const ValueClaim = styled.div`
     font-size: 16px;
     font-weight: 400;
     line-height: 19px;
+    margin: 5px 0px;
 `;
