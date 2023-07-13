@@ -240,7 +240,12 @@ export const GetFormikObject = (fields, rowsToEdit = {}) => {
     return formikObj
 }
 
-export const converToBase64 = (file) => {
+/**  
+ *  @function convertToBase64
+ * 
+ *  @description Convert file object to base64.
+*/
+export const convertToBase64 = (file) => {
     return new Promise((resolve, reject) => {
         const fileReader = new FileReader()
         fileReader.readAsDataURL(file)
@@ -255,11 +260,21 @@ export const converToBase64 = (file) => {
     })
 }
 
+/**  
+ *  @function getBase64
+ * 
+ *  @description Get base64 of the requested file.
+*/
 const getBase64 = async (file) => {
-    const dataUrl = await converToBase64(file)
+    const dataUrl = await convertToBase64(file)
     return dataUrl
 }
 
+/**  
+ *  @function getJsonForPabbly
+ * 
+ *  @description Prepare and return json for pabbly.
+*/
 export const getJsonForPabbly = async ({ policyHolderDetails,
     patientDetails,
     claimDescription,
@@ -270,32 +285,32 @@ export const getJsonForPabbly = async ({ policyHolderDetails,
     selectedMedDocs, }
 ) => {
     const policyHolderData = {
-        firstName: policyHolderDetails.policyHolderFirstName || "",
-        lastName: policyHolderDetails.policyHolderLastName || "",
-        policyNumber: policyHolderDetails.policyNumber || "",
-        email: policyHolderDetails.policyHolderEmail || "",
-        phoneCode: policyHolderDetails.policyHolderPhoneCode || "",
-        phoneNumber: policyHolderDetails.policyHolderPhoneNumber || "",
+        "firstName": policyHolderDetails.policyHolderFirstName || "",
+        "lastName": policyHolderDetails.policyHolderLastName || "",
+        "policyNumber": policyHolderDetails.policyNumber || "",
+        "email": policyHolderDetails.policyHolderEmail || "",
+        "phoneCode": policyHolderDetails.policyHolderPhoneCode || "",
+        "phoneNumber": policyHolderDetails.policyHolderPhoneNumber || "",
     }
 
     const patientData = {
-        firstName: patientDetails.patientFirstName || "",
-        lastName: patientDetails.patientLastName || "",
-        gender: patientDetails.gender || "",
-        dateOfBirth: patientDetails.dateOfBirth || "",
-        email: patientDetails.patientEmail || "",
-        phoneCode: patientDetails.patientPhoneCode || "",
-        phoneNumber: patientDetails.patientPhoneNumber || "",
-        relationshipToPolicyHolder: patientDetails.relationshipToPolicyHolder || "",
+        "firstName": patientDetails.patientFirstName || "",
+        "lastName": patientDetails.patientLastName || "",
+        "gender": patientDetails.gender || "",
+        "dateOfBirth": patientDetails.dateOfBirth || "",
+        "email": patientDetails.patientEmail || "",
+        "phoneCode": patientDetails.patientPhoneCode || "",
+        "phoneNumber": patientDetails.patientPhoneNumber || "",
+        "relationshipToPolicyHolder": patientDetails.relationshipToPolicyHolder || "",
     }
 
     const claimConditionData = {
-        condition: claimDescription.condition || "",
+        "condition": claimDescription.condition || "",
     }
 
     const visitData = {
-        dateOfVisit: claimVisitDetails.dateOfVisit || "",
-        location: claimVisitDetails.location || "",
+        "dateOfVisit": claimVisitDetails.dateOfVisit || "",
+        "location": claimVisitDetails.location || "",
     }
 
     const params = {
@@ -314,7 +329,7 @@ export const getJsonForPabbly = async ({ policyHolderDetails,
 
     const claimDocs = []
     const receiptsDocs = []
-    const payentDocs = []
+    const paymentDocs = []
     const medicalReportDocs = []
 
     for (let docInstanceIndex = 0; docInstanceIndex < documentsArr.length; docInstanceIndex++) {
@@ -338,7 +353,7 @@ export const getJsonForPabbly = async ({ policyHolderDetails,
                 receiptsDocs.push(docObj)
             }
             else if (docInstance.type === PROOF_PAYMENT) {
-                payentDocs.push(docObj)
+                paymentDocs.push(docObj)
             }
             else if (docInstance.type === MEDICAL_REPORTS) {
                 medicalReportDocs.push(docObj)
@@ -349,10 +364,9 @@ export const getJsonForPabbly = async ({ policyHolderDetails,
     const documents = {
         "claimDocuments": claimDocs,
         "receipts": receiptsDocs,
-        "proofPaymentDocument": payentDocs,
+        "proofPaymentDocument": paymentDocs,
         "medicalReports": medicalReportDocs
     }
-
     params.documents = documents
 
     return params
