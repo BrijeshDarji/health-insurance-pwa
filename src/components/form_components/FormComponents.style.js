@@ -30,7 +30,7 @@ export const GlobalInputLabel = styled(InputLabel)(({ theme }) => ({
     letterSpacing: 0,
     marginBottom: 8,
     color: theme.palette.primary.main,
-    fontFamily: ["sf-pro-display-regular"].join(","),
+    fontFamily: ["sf-pro-display-regular, system-ui, sans-serif"].join(","),
 }));
 
 export const GlobalInput = styled(TextField)(({ theme }) => ({
@@ -43,29 +43,21 @@ export const GlobalInput = styled(TextField)(({ theme }) => ({
     "& .Mui-focused": {
         outline: "none",
         border: 0,
-        borderColor: theme.palette.otherColors.borderInput,
     },
     "& .MuiInputBase-input": {
         outline: "none",
-        fontFamily: ["sf-pro-display-regular"].join(","),
+        fontFamily: ["sf-pro-display-regular, system-ui, sans-serif"].join(","),
+        padding: "0",
+    },
+    "& .MuiInputBase-input:not(textarea)": {
+        fontFamily: ["sf-pro-display-regular, system-ui, sans-serif"].join(","),
         padding: "14px 17px",
     },
     "& .MuiInputBase-root": {
         borderRadius: 8,
     },
-    '& .MuiOutlinedInput-root': {
-        '& fieldset': {
-            borderColor: theme.palette.otherColors.borderInput,
-        },
-        '&:hover fieldset': {
-            borderColor: theme.palette.otherColors.borderInput,
-        },
-        '&.Mui-focused fieldset': {
-            borderColor: theme.palette.otherColors.borderInput,
-        },
-    },
     "& .Mui-error": {
-        fontFamily: ["sf-pro-display-regular"].join(","),
+        fontFamily: ["sf-pro-display-regular, system-ui, sans-serif"].join(","),
     },
 }));
 
@@ -77,7 +69,7 @@ export const GlobalSelect = styled(Select)(({ theme }) => ({
     marginBottom: 18,
     border: 0,
     color: theme.palette.primary.main,
-    fontFamily: ["sf-pro-display-regular"].join(","),
+    fontFamily: ["sf-pro-display-regular, system-ui, sans-serif"].join(","),
     "& > div": {
         minHeight: "auto !important",
     },
@@ -103,12 +95,12 @@ export const GlobalRadioGroup = styled(RadioGroup)(({ theme }) => ({
         color: theme.palette.siteOrange.main,
     },
     "& .MuiTypography-root": {
-        fontFamily: ["sf-pro-display-regular"].join(","),
+        fontFamily: ["sf-pro-display-regular, system-ui, sans-serif"].join(","),
         fontSize: 14,
         lineHeight: "17px",
     },
     "& .Mui-error": {
-        fontFamily: ["sf-pro-display-regular"].join(","),
+        fontFamily: ["sf-pro-display-regular, system-ui, sans-serif"].join(","),
     },
 }));
 
@@ -123,27 +115,15 @@ export const GlobalDatePicker = styled(MobileDatePicker)(({ theme }) => ({
         borderColor: theme.palette.otherColors.borderInput,
     },
     "& .MuiInputBase-input": {
-        fontFamily: ["sf-pro-display-regular"].join(","),
+        fontFamily: ["sf-pro-display-regular, system-ui, sans-serif"].join(","),
         padding: "14px 17px",
     },
     "& .MuiInputBase-root": {
         borderRadius: 8,
         outline: "none",
-        borderColor: theme.palette.otherColors.borderInput,
-    },
-    '& .MuiOutlinedInput-root': {
-        '& fieldset': {
-            borderColor: theme.palette.otherColors.borderInput,
-        },
-        '&:hover fieldset': {
-            borderColor: theme.palette.otherColors.borderInput,
-        },
-        '&.Mui-focused fieldset': {
-            borderColor: theme.palette.otherColors.borderInput,
-        },
     },
     "& .Mui-error": {
-        fontFamily: ["sf-pro-display-regular"].join(","),
+        fontFamily: ["sf-pro-display-regular, system-ui, sans-serif"].join(","),
     },
 }));
 
@@ -159,7 +139,7 @@ export const GlobalTextarea = styled(TextareaAutosize)(({ theme }) => ({
     width: "100%",
     height: "300px",
     fontWeight: 400,
-    fontFamily: ["sf-pro-display-regular"].join(","),
+    fontFamily: ["sf-pro-display-regular, system-ui, sans-serif"].join(","),
     "&:focus": {
         outline: "none",
         borderColor: theme.palette.otherColors.borderInput,
@@ -168,6 +148,6 @@ export const GlobalTextarea = styled(TextareaAutosize)(({ theme }) => ({
         color: theme.palette.otherColors.radioColor,
     },
     "& .Mui-error": {
-        fontFamily: ["sf-pro-display-regular"].join(","),
+        fontFamily: ["sf-pro-display-regular, system-ui, sans-serif"].join(","),
     },
 }));

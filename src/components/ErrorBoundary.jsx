@@ -8,25 +8,29 @@ const style = {
         justifyContent: "center",
         alignItems: "center",
         height: "100vh",
+        width: "100%",
+        fontFamily: "sf-pro-display-regular"
     },
     image: {
-        width: "500px",
+        maxWidth: "400px",
+        width: "80%",
         maxHeight: "297px"
     },
     mainText: {
         display: "flex",
         alienItems: "center",
-        fontSize: "30px",
-        margin: "15px auto",
-        color: "#252525"
+        fontSize: "19px",
+        margin: "35px auto 15px auto",
+        textAlign: "center",
     },
     subText: {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        fontSize: "22px",
-        lineHeight: "2rem",
-        color: "#5e6367"
+        lineHeight: "19px",
+        fontSize: "14px",
+        textAlign: "center",
+        maxWidth: "80%"
     }
 }
 
