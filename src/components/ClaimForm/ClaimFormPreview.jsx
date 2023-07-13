@@ -5,7 +5,9 @@ import {
     CLAIM_DOCUMENTS,
     MEDICAL_REPORTS,
     PROOF_PAYMENT,
-    RECEIPTS
+    RECEIPTS,
+    GENDER_LIST,
+    RELATIONSHIP_LIST
 } from "../../assets/constants/Constant";
 
 import {
@@ -87,6 +89,7 @@ function ClaimFormPreview(props) {
                         {
                             label: "Gender",
                             key: "gender",
+                            isKeyBased: true,
                         },
                         {
                             label: "Date of Birth",
@@ -107,6 +110,7 @@ function ClaimFormPreview(props) {
                 {
                     label: "Relationship to Policy Holder",
                     key: "relationshipToPolicyHolder",
+                    isKeyBased: true,
                 },
             ],
         },
@@ -160,6 +164,42 @@ function ClaimFormPreview(props) {
         },
     ];
 
+    const getLabelFromKey = (field, formDetails) => {
+        const id = formDetails?.[field.key] || ""
+        let label = "-"
+
+        if (field.key === "gender") {
+            label = GENDER_LIST.find(gender => gender.value === id).label || ""
+        }
+        else if (field.key === "relationshipToPolicyHolder") {
+            label = RELATIONSHIP_LIST.find(relation => relation.value === id).label || ""
+        }
+
+        return label
+    }
+
+    const ShowFieldValue = ({ field, formDetails }) => {
+        let label = formDetails?.[field.key] || ""
+
+        if (field.isKeyBased) {
+            label = getLabelFromKey(field, formDetails) || ""
+        }
+
+        if (field.type === "phoneNumber") {
+            label = formDetails?.[field.preFix] + " " + formDetails?.[field.key] || ""
+        }
+
+        return (
+            <>
+                <LabelClaim>{field.label}</LabelClaim>
+
+                <ValueClaim>
+                    {label}
+                </ValueClaim>
+            </>
+        )
+    }
+
     return (
         <>
             {claimPreviewObj.map((formGroup) => (
@@ -176,13 +216,10 @@ function ClaimFormPreview(props) {
                                         {fields.group.map((field, index) => (
                                             <Grid item xs={6} md={6} key={index}>
                                                 <Wrapper>
-                                                    <LabelClaim>
-                                                        {field.label}
-                                                    </LabelClaim>
-
-                                                    <ValueClaim>
-                                                        {formGroup.formDetails?.[field.key] || ""}
-                                                    </ValueClaim>
+                                                    <ShowFieldValue
+                                                        field={field}
+                                                        formDetails={formGroup.formDetails}
+                                                    />
                                                 </Wrapper>
                                             </Grid>
                                         ))}
@@ -196,7 +233,7 @@ function ClaimFormPreview(props) {
                                                     <LabelClaim>{fields.label}</LabelClaim>
                                                     {
                                                         DOCUMENTS_DETAILS[fields.key]?.length > 0 ?
-                                                            DOCUMENTS_DETAILS[fields.key]?.map(document => (
+                                                            DOCUMENTS_DETAILS[fields.key].map(document => (
                                                                 <ValueClaim>{document.name}</ValueClaim>
                                                             ))
                                                             : (
@@ -207,16 +244,10 @@ function ClaimFormPreview(props) {
                                             )
                                             : (
                                                 <Wrapper key={index}>
-                                                    <LabelClaim>{fields.label}</LabelClaim>
-                                                    {
-                                                        fields?.type === "phoneNumber"
-                                                            ? (
-                                                                <ValueClaim>{formGroup.formDetails?.[fields.preFix] + " "} {formGroup.formDetails?.[fields.key] || ""}</ValueClaim>
-                                                            )
-                                                            : (
-                                                                <ValueClaim>{formGroup.formDetails?.[fields.key] || ""}</ValueClaim>
-                                                            )
-                                                    }
+                                                    <ShowFieldValue
+                                                        field={fields}
+                                                        formDetails={formGroup.formDetails}
+                                                    />
                                                 </Wrapper>
                                             )
                                         }
