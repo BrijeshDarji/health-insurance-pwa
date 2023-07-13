@@ -1,6 +1,9 @@
 {
     "conventionalCommits.scopes": [
         "PWA",
-        "routes"
+        "routes",
+        "formComponents",
+        "errorBoundary",
+        "loadingFallback"
     ]
 }

@@ -7,9 +7,6 @@ import axios from "axios"
 export const errorHandler = (err) => {
     const statusCode = err?.response?.status
 
-    if (statusCode === 401 || err === "No current user") {
-        localStorage.removeItem("token")
-    }
     return {
         success: false,
         statusCode,
@@ -25,20 +22,19 @@ export const promisifyError = (err) => {
     })
 }
 
-
 export const postApi = async (url, data) => {
     try {
         let config;
+
         config = {
             headers: {}
         }
-
         return axios
             .post(url, data, config)
             .then((response) => response)
             .catch(errorHandler)
-    } catch (err) {
+    }
+    catch (err) {
         return promisifyError(err)
     }
 }
-

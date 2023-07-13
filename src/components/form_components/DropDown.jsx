@@ -1,3 +1,7 @@
+/**
+ *  @description This file contains DropDown component, which will be used in whole system.
+ */
+
 import React from "react";
 import MenuItem from "@mui/material/MenuItem";
 
@@ -28,7 +32,7 @@ function DropDown({
     return (
         <div>
             <GlobalInputLabel htmlFor={`outlined-input-for-${name}`}>
-                {label}
+                {label} {required ? " *" : ""}
             </GlobalInputLabel>
 
             <GlobalInput
@@ -38,7 +42,6 @@ function DropDown({
                 disabled={disabled}
                 placeholder={placeholder}
                 {...formAttr}
-                required={required}
                 value={options?.length ? formik?.values?.[name] || "" : ""}
                 onChange={handleChange}
                 className={classes.textField}

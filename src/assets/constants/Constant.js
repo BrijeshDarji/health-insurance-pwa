@@ -57,3 +57,5 @@ export const STEPPER_LABELS = [
     { id: 4, label: "Visit Information" },
     { id: 5, label: "Documents" },
 ];
+
+export const DATE_FORMAT = "MM/DD/YYYY"

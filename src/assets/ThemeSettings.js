@@ -1,3 +1,8 @@
+/**
+ *  @description This file is a settings for theme.
+ *  Set all the theming related information here.
+ */
+
 import { createTheme } from "@mui/material/styles"
 
 export const siteColors = {
