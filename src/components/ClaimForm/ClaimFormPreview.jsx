@@ -2,6 +2,13 @@ import React, { memo } from "react";
 import { Grid } from "@mui/material";
 
 import {
+    CLAIM_DOCUMENTS,
+    MEDICAL_REPORTS,
+    PROOF_PAYMENT,
+    RECEIPTS
+} from "../../assets/constants/Constant";
+
+import {
     CardsWrapper,
     ClaimPreview,
     LabelClaim,
@@ -22,10 +29,10 @@ function ClaimFormPreview(props) {
     } = props
 
     const DOCUMENTS_DETAILS = {
-        "CLAIM_DOCUMENTS": selectedDocs,
-        "RECEIPTS": selectedReceipts,
-        "PROOF_PAYMENT": selectedPaymentDocs,
-        "MEDICAL_REPORTS": selectedMedDocs,
+        [CLAIM_DOCUMENTS]: selectedDocs,
+        [RECEIPTS]: selectedReceipts,
+        [PROOF_PAYMENT]: selectedPaymentDocs,
+        [MEDICAL_REPORTS]: selectedMedDocs,
     }
 
     const claimPreviewObj = [
@@ -57,6 +64,8 @@ function ClaimFormPreview(props) {
                 {
                     label: "Phone Number",
                     key: "policyHolderPhoneNumber",
+                    preFix: "policyHolderPhoneCode",
+                    type: "phoneNumber",
                 },
             ],
         },
@@ -92,6 +101,8 @@ function ClaimFormPreview(props) {
                 {
                     label: "Phone Number",
                     key: "patientPhoneNumber",
+                    preFix: "patientPhoneCode",
+                    type: "phoneNumber",
                 },
                 {
                     label: "Relationship to Policy Holder",
@@ -130,19 +141,19 @@ function ClaimFormPreview(props) {
             formName: "Documents",
             meta: [
                 {
-                    key: "CLAIM_DOCUMENTS",
+                    key: CLAIM_DOCUMENTS,
                     label: "Claim Documents"
                 },
                 {
-                    key: "RECEIPTS",
+                    key: RECEIPTS,
                     label: "Receipts"
                 },
                 {
-                    key: "PROOF_PAYMENT",
+                    key: PROOF_PAYMENT,
                     label: "Proof of Payment"
                 },
                 {
-                    key: "MEDICAL_REPORTS",
+                    key: MEDICAL_REPORTS,
                     label: "Medical Reports"
                 },
             ]
@@ -184,16 +195,28 @@ function ClaimFormPreview(props) {
                                                 <Wrapper key={index}>
                                                     <LabelClaim>{fields.label}</LabelClaim>
                                                     {
-                                                        DOCUMENTS_DETAILS[fields.key]?.map(document => (
-                                                            <ValueClaim>{document.name}</ValueClaim>
-                                                        ))
+                                                        DOCUMENTS_DETAILS[fields.key]?.length > 0 ?
+                                                            DOCUMENTS_DETAILS[fields.key]?.map(document => (
+                                                                <ValueClaim>{document.name}</ValueClaim>
+                                                            ))
+                                                            : (
+                                                                <ValueClaim>-</ValueClaim>
+                                                            )
                                                     }
                                                 </Wrapper>
                                             )
                                             : (
                                                 <Wrapper key={index}>
                                                     <LabelClaim>{fields.label}</LabelClaim>
-                                                    <ValueClaim>{formGroup.formDetails?.[fields.key] || ""}</ValueClaim>
+                                                    {
+                                                        fields?.type === "phoneNumber"
+                                                            ? (
+                                                                <ValueClaim>{formGroup.formDetails?.[fields.preFix] + " "} {formGroup.formDetails?.[fields.key] || ""}</ValueClaim>
+                                                            )
+                                                            : (
+                                                                <ValueClaim>{formGroup.formDetails?.[fields.key] || ""}</ValueClaim>
+                                                            )
+                                                    }
                                                 </Wrapper>
                                             )
                                         }
