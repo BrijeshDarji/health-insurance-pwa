@@ -6,7 +6,6 @@
 
 import React, { memo, useEffect, useState } from "react";
 import dayjs from 'dayjs';
-import SendIcon from '@mui/icons-material/Send';
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { useSnackbar } from 'notistack'
@@ -51,6 +50,7 @@ import {
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import checkRight from "./../../assets/images/svg/checkRight.svg";
+import SendIcon from '@mui/icons-material/Send';
 
 function ClaimForm() {
     const navigate = useNavigate();
