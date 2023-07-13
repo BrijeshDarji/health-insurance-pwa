@@ -33,6 +33,7 @@ export const POLICY_HOLDER_DETAIL_FIELDS = [
         type: "text",
         fieldType: FIELD_TYPE.SINGLE_LINE_TEXT,
         required: true,
+        helperText: "e.g. ENT-1307-2023",
     },
     {
         label: "Email Address",
@@ -60,6 +61,7 @@ export const POLICY_HOLDER_DETAIL_FIELDS = [
                 type: "text",
                 fieldType: FIELD_TYPE.SINGLE_LINE_TEXT,
                 required: true,
+                helperText: "e.g. 9898758046",
             },
         ]
     },
@@ -126,6 +128,7 @@ export const PATIENT_DETAIL_FIELDS = [
                 type: "text",
                 fieldType: FIELD_TYPE.SINGLE_LINE_TEXT,
                 required: true,
+                helperText: "e.g. 9898758046",
             },
         ]
     },
@@ -168,5 +171,6 @@ export const VISIT_DETAIL_FIELDS = [
         type: "text",
         fieldType: FIELD_TYPE.SINGLE_LINE_TEXT,
         required: true,
+        helperText: "e.g. 6201 Harry Hines Blvd, Dallas, TX 75390, United States",
     },
 ]

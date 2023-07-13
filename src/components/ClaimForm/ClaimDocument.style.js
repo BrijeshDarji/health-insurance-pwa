@@ -17,7 +17,7 @@ export const UploadWrapper = styled.div`
     width: 100%;
     display: flex;
     flex-direction:column;
-    gap: 16px;
+    gap: 10px;
 `;
 
 export const PreviewBox = styled.div`
@@ -25,6 +25,9 @@ export const PreviewBox = styled.div`
     display: flex;
     position: relative;
     border-radius: 8px;
+    &:last-of-type{
+        margin-bottom: 10px;
+    }
     & > img {
         width: 27px;
         height: 37px;
@@ -81,3 +84,9 @@ export const CancelIcon = styled.div`
 export const FileDropWrapper = styled.div`
     margin-bottom:30px;
 `;
+
+export const style = {
+    heightFixed: {
+        height: "25px"
+    }
+}
