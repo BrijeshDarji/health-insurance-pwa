@@ -45,7 +45,7 @@ function ClaimFormPreview(props) {
         {
             id: 1,
             formDetails: policyHolderDetails,
-            formName: "Policy Details",
+            formName: "Policy Holder Details",
             meta: [
                 {
                     group: [
