@@ -18,6 +18,7 @@ import {
 
 import AddIcon from "@mui/icons-material/Add";
 import docPreview from "../../assets/images/doc-preview.png";
+import CloseIcon from '@mui/icons-material/Close';
 
 const minBytesFileSize = 0.1
 const maxFileSize = 12
@@ -107,9 +108,10 @@ const FileDropZone = (props) => {
                             {file.name}
 
                             <CancelIcon>
-                                <div onClick={() => removeAttachment(file)}>
-                                    X
-                                </div>
+                                <CloseIcon
+                                    onClick={() => removeAttachment(file)}
+                                    fontSize='10px'
+                                />
                             </CancelIcon>
                         </DocName>
                     </PreviewBox>
