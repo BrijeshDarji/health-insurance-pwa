@@ -2,7 +2,14 @@ import React, { memo, } from "react";
 
 import FileDropzone from "../form_components/FileDropZone";
 
-import { DOCUMENT_TYPES } from "../../assets/constants/Constant";
+import {
+    CLAIM_DOCUMENTS,
+    DOCUMENT_TYPES,
+    MEDICAL_REPORTS,
+    PROOF_PAYMENT,
+    RECEIPTS,
+} from "../../assets/constants/Constant";
+
 import { DocumentContainer } from "./ClaimDocument.style";
 
 function ClaimDocuments(props) {
@@ -18,19 +25,19 @@ function ClaimDocuments(props) {
     } = props
 
     const FIELDS_STATES = {
-        "CLAIM_DOCUMENTS": {
+        [CLAIM_DOCUMENTS]: {
             "selectedFiles": selectedDocs,
             "setSelectedFiles": setSelectedDocs,
         },
-        "RECEIPTS": {
+        [RECEIPTS]: {
             "selectedFiles": selectedReceipts,
             "setSelectedFiles": setSelectedReceipts,
         },
-        "PROOF_PAYMENT": {
+        [PROOF_PAYMENT]: {
             "selectedFiles": selectedPaymentDocs,
             "setSelectedFiles": setSelectedPaymentDocs,
         },
-        "MEDICAL_REPORTS": {
+        [MEDICAL_REPORTS]: {
             "selectedFiles": selectedMedDocs,
             "setSelectedFiles": setSelectedMedDocs,
         },
