@@ -14,7 +14,7 @@ export const GlobalButton = styled(Button)({
   display: "flex",
   justifyContent: "center",
   maxWidth: "500px",
-  fontFamily: ["sf-pro-display-regular"].join(","),
+  fontFamily: ["sf-pro-display-regular, system-ui, sans-serif"].join(","),
   "& > span, & > p": {
     marginLeft: "auto",
   },
