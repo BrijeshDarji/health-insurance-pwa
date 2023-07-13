@@ -4,6 +4,7 @@
         "routes",
         "formComponents",
         "errorBoundary",
-        "loadingFallback"
+        "loadingFallback",
+        "claimForm"
     ]
 }

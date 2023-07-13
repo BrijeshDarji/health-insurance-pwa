@@ -149,7 +149,7 @@ function ClaimForm() {
         if (activeStep === 1) {
             navigate(URL_WELCOME_SCREEN);
         }
-        else {
+        else if (!loading) {
             setActiveStep(activeStep - 1);
         }
     };
@@ -240,22 +240,22 @@ function ClaimForm() {
             selectedPaymentDocs,
             selectedMedDocs,
         })
-
         setLoading(true)
 
         postApi(FORM_SUBMIT_PATH, params)
             .then((response) => {
                 if (response) {
                     if (response.data && response.status) {
-                        setLoading(false)
                         navigate(URL_CLAIM_SUCCESS);
                     }
                     else if (!response.status && response.message) {
-                        setLoading(false)
                         enqueueSnackbar(response.message, { variant: "error" })
                     }
                 }
-            });
+            })
+            .finally(() => {
+                setLoading(false)
+            })
     };
 
     return (
@@ -313,6 +313,7 @@ function ClaimForm() {
                 <BackButton
                     variant="contained"
                     onClick={goToPreviousPage}
+                    disabled={loading}
                 >
                     Back
                 </BackButton>
