@@ -64,6 +64,7 @@ export const getDynamicElements = (
                     placeholder={field.placeholder}
                     type={field.type}
                     required={field.required}
+                    helperText={field.helperText}
                 />
             )
             break

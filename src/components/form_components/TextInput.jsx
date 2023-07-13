@@ -17,8 +17,9 @@ function TextInput({
     type,
     formik,
     required = false,
+    helperText,
 }) {
-    const formAttr = formAttributes(formik, name)
+    const formAttr = formAttributes(formik, name, helperText)
 
     return (
         <div>
