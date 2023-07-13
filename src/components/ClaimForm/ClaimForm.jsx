@@ -17,9 +17,11 @@ import ClaimVisitDetails from "./ClaimVisitDetails";
 import ClaimDocuments from "./ClaimDocuments";
 import ClaimFormPreview from "./ClaimFormPreview";
 
-import { GetFormikObject } from "../../helpers/Utils.js";
+import { GetFormikObject, getJsonForPabbly } from "../../helpers/Utils.js";
 import { ERROR_MESSAGES } from "../../assets/constants/Messages.js";
 import { DATE_FORMAT, STEPPER_LABELS } from "../../assets/constants/Constant";
+import { FORM_SUBMIT_PATH } from "../../assets/constants/ApiPath";
+import { postApi } from "../../helpers/ApiHelper";
 
 import {
     URL_CLAIM_SUCCESS,
@@ -210,13 +212,43 @@ function ClaimForm() {
         setActiveStep(activeStep + 1);
     };
 
-    const handleSubmit = () => {
-        if (!formValidator1.isValid || !formValidator2.isValid || !formValidator3.isValid || !formValidator4.isValid) {
-            enqueueSnackbar(ERROR_MESSAGES.ALL_REQUIRED, { variant: "error" })
+    const handleSubmit = async () => {
+        if (!formValidator1.isValid ||
+            !formValidator2.isValid ||
+            !formValidator3.isValid ||
+            !formValidator4.isValid
+        ) {
+            enqueueSnackbar(ERROR_MESSAGES.PREVIEW_WARNING, { variant: "error" })
             return
         }
 
-        navigate(URL_CLAIM_SUCCESS);
+        const policyHolderDetails = formValidator1.values || {}
+        const patientDetails = formValidator2.values || {}
+        const claimDescription = formValidator3.values || {}
+        const claimVisitDetails = formValidator4.values || {}
+
+        const params = await getJsonForPabbly({
+            policyHolderDetails,
+            patientDetails,
+            claimDescription,
+            claimVisitDetails,
+            selectedDocs,
+            selectedReceipts,
+            selectedPaymentDocs,
+            selectedMedDocs,
+        })
+
+        postApi(FORM_SUBMIT_PATH, params)
+            .then((response) => {
+                if (response) {
+                    if (response.data && response.status) {
+                        navigate(URL_CLAIM_SUCCESS);
+                    }
+                    else if (!response.status && response.message) {
+                        enqueueSnackbar(response.message, { variant: "error" })
+                    }
+                }
+            });
     };
 
     return (

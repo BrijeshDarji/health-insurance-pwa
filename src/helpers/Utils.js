@@ -10,7 +10,13 @@ import RadioButton from "../components/form_components/RadioButton";
 import DatePicker from "../components/form_components/DatePicker";
 import Textarea from "../components/form_components/Textarea";
 
-import { FIELD_TYPE } from "../assets/constants/Constant";
+import {
+    CLAIM_DOCUMENTS,
+    FIELD_TYPE,
+    MEDICAL_REPORTS,
+    PROOF_PAYMENT,
+    RECEIPTS
+} from "../assets/constants/Constant";
 
 import { PhoneGroup } from "../components/ClaimForm/ClaimForm.style";
 
@@ -160,7 +166,7 @@ const setFieldType = (field, fieldType, schema, initialValues, rowsToEdit) => {
         fieldType =
             Yup
                 .string()
-            .trim()
+                .trim()
                 .matches(/^[a-zA-Z0-9 _-]*$/, {
                     message: "Only alphanumeric, underscore(_), and hyphen(-) are allowed.",
                 })
@@ -177,9 +183,9 @@ const setFieldType = (field, fieldType, schema, initialValues, rowsToEdit) => {
                 .string()
                 .trim()
                 //eslint-disable-next-line
-            .matches(/^([a-zA-Z0-9_\-\.\+]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/, {
-                message: "Enter valid email address.",
-            })
+                .matches(/^([a-zA-Z0-9_\-\.\+]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/, {
+                    message: "Enter valid email address.",
+                })
 
         setValueInSchema()
     }
@@ -232,4 +238,122 @@ export const GetFormikObject = (fields, rowsToEdit = {}) => {
         "validateOnMount": true,
     }
     return formikObj
+}
+
+export const converToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+        const fileReader = new FileReader()
+        fileReader.readAsDataURL(file)
+
+        fileReader.onload = () => {
+            resolve(fileReader.result)
+        }
+
+        fileReader.onerror = (error) => {
+            reject(error)
+        }
+    })
+}
+
+const getBase64 = async (file) => {
+    const dataUrl = await converToBase64(file)
+    return dataUrl
+}
+
+export const getJsonForPabbly = async ({ policyHolderDetails,
+    patientDetails,
+    claimDescription,
+    claimVisitDetails,
+    selectedDocs,
+    selectedReceipts,
+    selectedPaymentDocs,
+    selectedMedDocs, }
+) => {
+    const policyHolderData = {
+        firstName: policyHolderDetails.policyHolderFirstName || "",
+        lastName: policyHolderDetails.policyHolderLastName || "",
+        policyNumber: policyHolderDetails.policyNumber || "",
+        email: policyHolderDetails.policyHolderEmail || "",
+        phoneCode: policyHolderDetails.policyHolderPhoneCode || "",
+        phoneNumber: policyHolderDetails.policyHolderPhoneNumber || "",
+    }
+
+    const patientData = {
+        firstName: patientDetails.patientFirstName || "",
+        lastName: patientDetails.patientLastName || "",
+        gender: patientDetails.gender || "",
+        dateOfBirth: patientDetails.dateOfBirth || "",
+        email: patientDetails.patientEmail || "",
+        phoneCode: patientDetails.patientPhoneCode || "",
+        phoneNumber: patientDetails.patientPhoneNumber || "",
+        relationshipToPolicyHolder: patientDetails.relationshipToPolicyHolder || "",
+    }
+
+    const claimConditionData = {
+        condition: claimDescription.condition || "",
+    }
+
+    const visitData = {
+        dateOfVisit: claimVisitDetails.dateOfVisit || "",
+        location: claimVisitDetails.location || "",
+    }
+
+    const params = {
+        "policyHolderDetails": policyHolderData,
+        "patientDetails": patientData,
+        "claimDetails": claimConditionData,
+        "visitDetails": visitData,
+    }
+
+    const documentsArr = [
+        { type: CLAIM_DOCUMENTS, docArr: selectedDocs, },
+        { type: RECEIPTS, docArr: selectedReceipts, },
+        { type: PROOF_PAYMENT, docArr: selectedPaymentDocs, },
+        { type: MEDICAL_REPORTS, docArr: selectedMedDocs, },
+    ]
+
+    const claimDocs = []
+    const receiptsDocs = []
+    const payentDocs = []
+    const medicalReportDocs = []
+
+    for (let docInstanceIndex = 0; docInstanceIndex < documentsArr.length; docInstanceIndex++) {
+        const docInstance = documentsArr[docInstanceIndex];
+
+        for (let docIndex = 0; docIndex < docInstance.docArr.length; docIndex++) {
+            const doc = docInstance.docArr[docIndex];
+
+            const dataUrl = await getBase64(doc);
+
+            const docObj = {
+                name: doc.name,
+                mimeType: doc.type,
+                dataUrl: dataUrl
+            }
+
+            if (docInstance.type === CLAIM_DOCUMENTS) {
+                claimDocs.push(docObj)
+            }
+            else if (docInstance.type === RECEIPTS) {
+                receiptsDocs.push(docObj)
+            }
+            else if (docInstance.type === PROOF_PAYMENT) {
+                payentDocs.push(docObj)
+            }
+            else if (docInstance.type === MEDICAL_REPORTS) {
+                medicalReportDocs.push(docObj)
+            }
+        }
+    }
+
+    const documents = {
+        "claimDocuments": claimDocs,
+        "receipts": receiptsDocs,
+        "proofPaymentDocument": payentDocs,
+        "medicalReports": medicalReportDocs
+    }
+
+    params.documents = documents
+
+    return params
 }

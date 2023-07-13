@@ -38,11 +38,16 @@ export const RELATIONSHIP_LIST = [
     { label: "Spouse", value: "SPOUSE" },
 ]
 
+export const CLAIM_DOCUMENTS = "CLAIM_DOCUMENTS"
+export const RECEIPTS = "RECEIPTS"
+export const PROOF_PAYMENT = "PROOF_PAYMENT"
+export const MEDICAL_REPORTS = "MEDICAL_REPORTS"
+
 export const DOCUMENT_TYPES = [
-    { id: "CLAIM_DOCUMENTS", label: "Claim Documents" },
-    { id: "RECEIPTS", label: "Receipts" },
-    { id: "PROOF_PAYMENT", label: "Proof of Payment" },
-    { id: "MEDICAL_REPORTS", label: "Medical Reports" },
+    { id: CLAIM_DOCUMENTS, label: "Claim Documents" },
+    { id: RECEIPTS, label: "Receipts" },
+    { id: PROOF_PAYMENT, label: "Proof of Payment" },
+    { id: MEDICAL_REPORTS, label: "Medical Reports" },
 ]
 
 export const STEPPER_LABELS = [
