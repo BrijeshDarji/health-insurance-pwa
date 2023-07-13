@@ -62,7 +62,7 @@ function ClaimForm() {
     const [selectedMedDocs, setSelectedMedDocs] = useState([])
 
     const [loading, setLoading] = useState(false)
-    const [activeStep, setActiveStep] = useState(5);
+    const [activeStep, setActiveStep] = useState(1);
     const [formikObj1, setFormikObj1] = useState({})
     const [formikObj2, setFormikObj2] = useState({})
     const [formikObj3, setFormikObj3] = useState({})
