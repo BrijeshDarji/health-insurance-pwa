@@ -109,7 +109,6 @@ const FileDropzone = (props) => {
                 ))}
             </UploadWrapper>
 
-
             <AddDocBox className="upload">
                 <div {...getRootProps()}>
                     <input {...getInputProps()} />
