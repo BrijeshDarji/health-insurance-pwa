@@ -4,20 +4,20 @@ import { Button } from "@mui/material";
 import bgWelcome from "../assets/images/svg/welcome-bg.svg";
 
 export const GlobalButton = styled(Button)({
-  boxShadow: "0px 9.000000953674316px 6.000000476837158px 0px #11184A29",
-  textTransform: "none",
-  fontSize: 18,
-  borderRadius: 14,
-  padding: "16px",
-  lineHeight: "21.48px",
-  width: "100%",
-  display: "flex",
-  justifyContent: "center",
-  maxWidth: "500px",
-  fontFamily: ["sf-pro-display-regular, system-ui, sans-serif"].join(","),
-  "& > span, & > p": {
-    marginLeft: "auto",
-  },
+    boxShadow: "0px 9.000000953674316px 6.000000476837158px 0px #11184A29",
+    textTransform: "none",
+    fontSize: 18,
+    borderRadius: 14,
+    padding: "16px",
+    lineHeight: "21.48px",
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    maxWidth: "500px",
+    fontFamily: ["sf-pro-display-regular, system-ui, sans-serif"].join(","),
+    "& > span, & > p": {
+        marginLeft: "auto",
+    },
 });
 
 export const WelcomeContainer = styled.div`
@@ -34,33 +34,33 @@ export const WelcomeContainer = styled.div`
     flex-direction: column;
 
     &::before{
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background: url(${bgWelcome}) no-repeat top left;
-      background-size: 71%;
-      transition: 0.12s ease-in-out;
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: url(${bgWelcome}) no-repeat top left;
+        background-size: 71%;
+        transition: 0.12s ease-in-out;
     }
     &.animated.active{
-      &::before{
-        left: -40%;
-        top: -40%;
-        transition: 0.12s ease-in-out;
-      }
+        &::before{
+            left: -40%;
+            top: -40%;
+            transition: 0.12s ease-in-out;
+        }
     }
     
     &.claim-success{
-      background: none;
-      justify-content: flex-start;
-      padding-top: 63px;
-      &::before{
-        content: unset;
-      }
+        background: none;
+        justify-content: flex-start;
+        padding-top: 63px;
+        &::before{
+            content: unset;
+        }
     }
-  `;
+`;
 
 export const TextMain = styled.p`
     font-family: "sf-pro-display-medium";
@@ -70,9 +70,9 @@ export const TextMain = styled.p`
     letter-spacing: 0em;
     margin: 100px 0 16px 0;
     &.claim-success{
-      margin: 34px 0 16px 0;
+        margin: 34px 0 16px 0;
     }
-  `;
+`;
 
 export const TextSub = styled.p`
     font-family: "sf-pro-display-regular";
@@ -85,6 +85,6 @@ export const TextSub = styled.p`
     max-width: 500px;
     color: ${(props) => props.theme.palette.primary.subText};
     &.claim-success{
-      margin-bottom: 34px;
+        margin-bottom: 34px;
     }
-  `;
+`;
