@@ -116,7 +116,18 @@ function ClaimForm() {
                 );
 
             case 6:
-                return <ClaimFormPreview />;
+                return (
+                    <ClaimFormPreview
+                        selectedDocs={selectedDocs}
+                        selectedReceipts={selectedReceipts}
+                        selectedPaymentDocs={selectedPaymentDocs}
+                        selectedMedDocs={selectedMedDocs}
+                        policyHolderDetails={formValidator1.values || {}}
+                        patientDetails={formValidator2.values || {}}
+                        claimDescription={formValidator3.values || {}}
+                        claimVisitDetails={formValidator4.values || {}}
+                    />
+                )
 
             default:
                 return null;
@@ -194,6 +205,11 @@ function ClaimForm() {
     };
 
     const handleSubmit = () => {
+        if (!formValidator1.isValid || !formValidator2.isValid || !formValidator3.isValid || !formValidator4.isValid) {
+            enqueueSnackbar(ERROR_MESSAGES.ALL_REQUIRED, { variant: "error" })
+            return
+        }
+
         navigate(URL_CLAIM_SUCCESS);
     };
 
