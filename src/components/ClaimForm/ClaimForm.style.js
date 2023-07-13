@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { Button } from "@mui/material";
+import LoadingButton from '@mui/lab/LoadingButton';
 
 export const MainContainer = styled.div`
     height: 100vh;
@@ -90,6 +91,22 @@ export const PhoneGroup = styled.div`
         margin-top: 17px;
     }
 `;
+
+export const SubmitButton = styled(LoadingButton)({
+    boxShadow: "none",
+    textTransform: "none",
+    fontSize: 18,
+    borderRadius: 13,
+    padding: "17px",
+    lineHeight: "21.48px",
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    fontFamily: ["sf-pro-display-medium"].join(","),
+    "& > span, & > p": {
+        marginLeft: "auto",
+    },
+});
 
 export const NextButton = styled(Button)({
     boxShadow: "none",

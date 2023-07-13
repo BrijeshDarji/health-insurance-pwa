@@ -6,6 +6,7 @@
 
 import React, { memo, useEffect, useState } from "react";
 import dayjs from 'dayjs';
+import SendIcon from '@mui/icons-material/Send';
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { useSnackbar } from 'notistack'
@@ -45,6 +46,7 @@ import {
     FormsContainer,
     Steps,
     StepsDigit,
+    SubmitButton,
 } from "./ClaimForm.style.js";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -59,7 +61,8 @@ function ClaimForm() {
     const [selectedPaymentDocs, setSelectedPaymentDocs] = useState([])
     const [selectedMedDocs, setSelectedMedDocs] = useState([])
 
-    const [activeStep, setActiveStep] = useState(1);
+    const [loading, setLoading] = useState(false)
+    const [activeStep, setActiveStep] = useState(5);
     const [formikObj1, setFormikObj1] = useState({})
     const [formikObj2, setFormikObj2] = useState({})
     const [formikObj3, setFormikObj3] = useState({})
@@ -238,13 +241,17 @@ function ClaimForm() {
             selectedMedDocs,
         })
 
+        setLoading(true)
+
         postApi(FORM_SUBMIT_PATH, params)
             .then((response) => {
                 if (response) {
                     if (response.data && response.status) {
+                        setLoading(false)
                         navigate(URL_CLAIM_SUCCESS);
                     }
                     else if (!response.status && response.message) {
+                        setLoading(false)
                         enqueueSnackbar(response.message, { variant: "error" })
                     }
                 }
@@ -312,13 +319,15 @@ function ClaimForm() {
 
                 {activeStep === 6
                     ? (
-                        <NextButton
+                        <SubmitButton
+                            loading={loading}
+                            loadingPosition="end"
                             variant="contained"
                             onClick={handleSubmit}
+                            endIcon={<SendIcon />}
                         >
-                            {" "}
-                            Submit
-                        </NextButton>
+                            <p>Submit</p>
+                        </SubmitButton>
                     )
                     : (
                         <NextButton
@@ -329,8 +338,8 @@ function ClaimForm() {
                         </NextButton>
                     )
                 }
-            </BtnGroup>
-        </MainContainer>
+            </BtnGroup >
+        </MainContainer >
     );
 }
 
