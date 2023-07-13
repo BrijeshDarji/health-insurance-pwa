@@ -2,6 +2,7 @@
     "conventionalCommits.scopes": [
         "PWA",
         "routes",
-        "formComponents"
+        "formComponents",
+        "errorBoundary"
     ]
 }

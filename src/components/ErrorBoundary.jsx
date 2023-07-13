@@ -7,6 +7,9 @@
  */
 
 import React, { Component } from "react"
+
+import { INFO_MESSAGES } from "../assets/constants/Messages"
+
 import FallbackIcon from "../assets/images/fallback.png"
 
 const style = {
@@ -67,12 +70,12 @@ class ErrorBoundary extends Component {
                     <img src={FallbackIcon} alt="" style={style.image} />
 
                     <div style={style.mainText}>
-                        <span>Oops... Something went wrong.</span>
+                        <span> {INFO_MESSAGES.FALLBACK.MAIN_TEXT} </span>
                     </div>
 
                     <div style={style.subText}>
-                        <span> Please refresh the page & try again. </span>
-                        <span> If you still face the same issue then, please contact to support team! </span>
+                        <span> {INFO_MESSAGES.FALLBACK.SUB_TEXT_1} </span>
+                        <span> {INFO_MESSAGES.FALLBACK.SUB_TEXT_2} </span>
                     </div>
                 </div>
             )
