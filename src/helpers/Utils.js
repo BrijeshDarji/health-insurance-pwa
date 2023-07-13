@@ -14,6 +14,11 @@ import { FIELD_TYPE } from "../assets/constants/Constant";
 
 import { PhoneGroup } from "../components/ClaimForm/ClaimForm.style";
 
+/**  
+ *  @function formAttributes
+ * 
+ *  @description prepare and return form attributes mapped with formik's attributes.
+*/
 export const formAttributes = (props, name, helperText) => ({
     id: name,
     onChange: props.handleChange,
@@ -29,6 +34,13 @@ export const formAttributes = (props, name, helperText) => ({
             : helperText || "",
 })
 
+/**  
+ *  @function getDynamicElements
+ * 
+ *  @description Return form components based on field type.
+ *  Any new file type component must be added here.
+ *  Using this, we can show form components dynamically.
+*/
 export const getDynamicElements = (
     field,
     formik,
@@ -124,6 +136,11 @@ export const getDynamicElements = (
     return element
 }
 
+/**  
+ *  @function setFieldType
+ * 
+ *  @description Check form field's validation with formik, and set required values to formik.
+*/
 const setFieldType = (field, fieldType, schema, initialValues, rowsToEdit) => {
     const setValueInSchema = () => {
         if (field.name) {
@@ -194,6 +211,11 @@ const setFieldType = (field, fieldType, schema, initialValues, rowsToEdit) => {
     }
 }
 
+/**  
+ *  @function GetFormikObject
+ * 
+ *  @description Prepare and return formik obj with necessary information.
+*/
 export const GetFormikObject = (fields, rowsToEdit = {}) => {
     const initialValues = {}
     const schema = {}

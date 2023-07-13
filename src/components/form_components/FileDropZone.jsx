@@ -1,3 +1,7 @@
+/**
+ *  @description This file contains FileDropZone component, which will be used in whole system.
+ */
+
 import React, { useCallback, useRef } from 'react'
 import { useDropzone } from "react-dropzone"
 import { useSnackbar } from 'notistack'
@@ -18,7 +22,7 @@ const minBytesFileSize = 0.1
 const maxFileSize = 12
 const maxBytesFileSize = (maxFileSize * 1000000)
 
-const FileDropzone = (props) => {
+const FileDropZone = (props) => {
     const { selectedFiles, type, setSelectedFiles } = props
 
     const { enqueueSnackbar } = useSnackbar()
@@ -119,4 +123,4 @@ const FileDropzone = (props) => {
     )
 }
 
-export default FileDropzone
+export default FileDropZone

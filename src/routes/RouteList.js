@@ -1,3 +1,7 @@
+/**
+ *  @description This file contains system's route list. 
+ */
+
 import WelcomeScreen from "../components/WelcomeScreen"
 import ClaimForm from "../components/ClaimForm/ClaimForm"
 import ClaimFormSuccess from "../components/ClaimForm/ClaimFormSuccess.jsx"

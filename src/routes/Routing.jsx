@@ -1,3 +1,8 @@
+/**
+ *  @description This file is a main routing file,
+ *  which handles system's route.
+ */
+
 import React, { Suspense } from "react"
 import { Routes, Route, BrowserRouter } from "react-router-dom"
 

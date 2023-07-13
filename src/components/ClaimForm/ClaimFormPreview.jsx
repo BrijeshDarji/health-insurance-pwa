@@ -1,3 +1,7 @@
+/**
+ *  @description This file is a ClaimFormPreview step of the main ClaimForm.
+ */
+
 import React, { memo } from "react";
 import { Grid } from "@mui/material";
 

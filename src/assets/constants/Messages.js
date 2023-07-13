@@ -1,5 +1,5 @@
 /**
- *  @description This file contains all system messages.
+ *  @description This file contains all system messages & static text.
  */
 
 export const ERROR_MESSAGES = {
@@ -9,6 +9,13 @@ export const ERROR_MESSAGES = {
     }
 }
 
+export const SUCCESS_MESSAGES = {
+    SUBMITTED: "Successfully Submitted",
+}
+
 export const INFO_MESSAGES = {
-    DESCRIPTION: "Regency is recognised for its truly global reach and its ability to implement worldwide solutions for international organisations."
+    WELCOME: {
+        HEADER: "Welcome to Regency",
+        DESCRIPTION: "Regency is recognised for its truly global reach and its ability to implement worldwide solutions for international organisations."
+    },
 }

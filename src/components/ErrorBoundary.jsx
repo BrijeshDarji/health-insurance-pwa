@@ -1,3 +1,11 @@
+/**
+ *  @description This component is a fallback component,
+ *  which will be appear when code throws error, which was causing break the page.
+ *  But instead of broken page it will display this component.
+ * 
+ *  @tutorial https://legacy.reactjs.org/docs/error-boundaries.html
+ */
+
 import React, { Component } from "react"
 import FallbackIcon from "../assets/images/fallback.png"
 

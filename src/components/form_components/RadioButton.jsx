@@ -1,3 +1,7 @@
+/**
+ *  @description This file contains RadioButton component, which will be used in whole system.
+ */
+
 import React from "react";
 import { FormControlLabel, Radio } from "@mui/material";
 

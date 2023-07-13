@@ -1,3 +1,7 @@
+/**
+ *  @description This file is a ClaimPatientDetails step of the main ClaimForm.
+ */
+
 import React, { memo } from "react";
 
 import { getDynamicElements } from "../../helpers/Utils";

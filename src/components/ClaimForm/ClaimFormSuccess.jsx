@@ -1,6 +1,12 @@
+/**
+ *  @description This file is a success page displayed,
+ *  when ClaimForm is submitted successfully.
+ */
+
 import React, { memo } from "react";
 
 import { URL_WELCOME_SCREEN } from "../../assets/constants/SitePath.js";
+import { INFO_MESSAGES, SUCCESS_MESSAGES } from "../../assets/constants/Messages.js";
 
 import {
     WelcomeContainer,
@@ -23,13 +29,11 @@ function ClaimFormSuccess() {
             />
 
             <TextMain className="claim-success">
-                Successfully Submitted
+                {SUCCESS_MESSAGES.SUBMITTED}
             </TextMain>
 
             <TextSub className="claim-success">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text.
+                {INFO_MESSAGES.WELCOME.DESCRIPTION}
             </TextSub>
 
             <GlobalButton

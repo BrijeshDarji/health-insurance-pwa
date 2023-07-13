@@ -1,3 +1,9 @@
+/**
+ *  @description This file is a main ClaimForm, 
+ *  which is container for its steppers, 
+ *  and handles next step, submit button functionality.
+ */
+
 import React, { memo, useEffect, useState } from "react";
 import dayjs from 'dayjs';
 import { useNavigate } from "react-router-dom";
@@ -13,7 +19,7 @@ import ClaimFormPreview from "./ClaimFormPreview";
 
 import { GetFormikObject } from "../../helpers/Utils.js";
 import { ERROR_MESSAGES } from "../../assets/constants/Messages.js";
-import { STEPPER_LABELS } from "../../assets/constants/Constant";
+import { DATE_FORMAT, STEPPER_LABELS } from "../../assets/constants/Constant";
 
 import {
     URL_CLAIM_SUCCESS,
@@ -68,8 +74,8 @@ function ClaimForm() {
             "patientPhoneCode": "+91",
             "gender": "MALE",
             "relationshipToPolicyHolder": "MY_SELF",
-            "dateOfBirth": dayjs().format("MM/DD/YYYY"),
-            "dateOfVisit": dayjs().format("MM/DD/YYYY"),
+            "dateOfBirth": dayjs().format(DATE_FORMAT),
+            "dateOfVisit": dayjs().format(DATE_FORMAT),
         }
         handleFormikValues(defaultValues)
         // eslint-disable-next-line

@@ -1,3 +1,7 @@
+/**
+ *  @description This file contains DropDown component, which will be used in whole system.
+ */
+
 import React from "react";
 import MenuItem from "@mui/material/MenuItem";
 

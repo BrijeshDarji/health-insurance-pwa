@@ -1,3 +1,7 @@
+/**
+ *  @description This file contains Textarea component, which will be used in whole system.
+ */
+
 import React from "react";
 
 import { formAttributes } from "../../helpers/Utils.js";

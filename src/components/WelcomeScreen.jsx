@@ -1,6 +1,12 @@
+/**
+ *  @description This file is a welcome screen,
+ *  which will be appear when user hit our site url.
+ */
+
 import React, { memo, useEffect, useState } from "react";
 
 import { URL_CLAIM } from "../assets/constants/SitePath.js";
+import { INFO_MESSAGES } from "../assets/constants/Messages.js";
 
 import {
     WelcomeContainer,
@@ -33,13 +39,11 @@ function WelcomeScreen() {
             />
 
             <TextMain className="welcome-content">
-                Welcome to Regency
+                {INFO_MESSAGES.WELCOME.HEADER}
             </TextMain>
 
             <TextSub className="welcome-content">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text.
+                {INFO_MESSAGES.WELCOME.DESCRIPTION}
             </TextSub>
 
             <GlobalButton
