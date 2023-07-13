@@ -1,3 +1,7 @@
+/**
+ *  @description This file contains RadioButton component, which will be used in whole system.
+ */
+
 import React from "react";
 import { FormControlLabel, Radio } from "@mui/material";
 
@@ -23,14 +27,13 @@ function RadioButton({
     return (
         <div>
             <GlobalInputLabel htmlFor={`outlined-input-for-${name}`}>
-                {label}
+                {label} {required ? " *" : ""}
             </GlobalInputLabel>
 
             <GlobalRadioGroup
                 row
                 aria-labelledby="demo-row-radio-buttons-group-label"
                 name="row-radio-buttons-group"
-                required={required}
                 disabled={disabled}
                 {...formAttr}
                 onChange={handleChange}

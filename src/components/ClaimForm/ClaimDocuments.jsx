@@ -1,3 +1,7 @@
+/**
+ *  @description This file is a ClaimDocuments step of the main ClaimForm.
+ */
+
 import React, { memo, } from "react";
 
 import FileDropzone from "../form_components/FileDropZone";

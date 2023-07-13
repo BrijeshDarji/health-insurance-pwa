@@ -1,3 +1,7 @@
+/**
+ *  @description This file is a ClaimVisitDetails step of the main ClaimForm.
+ */
+
 import React, { memo } from "react";
 
 import { VISIT_DETAIL_FIELDS } from "../../assets/constants/FormFields";

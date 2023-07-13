@@ -1,4 +1,15 @@
+/**
+ *  @description This component is a fallback component,
+ *  which will be appear when code throws error, which was causing break the page.
+ *  But instead of broken page it will display this component.
+ * 
+ *  @tutorial https://legacy.reactjs.org/docs/error-boundaries.html
+ */
+
 import React, { Component } from "react"
+
+import { INFO_MESSAGES } from "../assets/constants/Messages"
+
 import FallbackIcon from "../assets/images/fallback.png"
 
 const style = {
@@ -8,25 +19,29 @@ const style = {
         justifyContent: "center",
         alignItems: "center",
         height: "100vh",
+        width: "100%",
+        fontFamily: "sf-pro-display-regular"
     },
     image: {
-        width: "500px",
+        maxWidth: "400px",
+        width: "80%",
         maxHeight: "297px"
     },
     mainText: {
         display: "flex",
         alienItems: "center",
-        fontSize: "30px",
-        margin: "15px auto",
-        color: "#252525"
+        fontSize: "19px",
+        margin: "35px auto 15px auto",
+        textAlign: "center",
     },
     subText: {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        fontSize: "22px",
-        lineHeight: "2rem",
-        color: "#5e6367"
+        lineHeight: "19px",
+        fontSize: "14px",
+        textAlign: "center",
+        maxWidth: "80%"
     }
 }
 
@@ -55,12 +70,12 @@ class ErrorBoundary extends Component {
                     <img src={FallbackIcon} alt="" style={style.image} />
 
                     <div style={style.mainText}>
-                        <span>Oops... Something went wrong.</span>
+                        <span> {INFO_MESSAGES.FALLBACK.MAIN_TEXT} </span>
                     </div>
 
                     <div style={style.subText}>
-                        <span> Please refresh the page & try again. </span>
-                        <span> If you still face the same issue then, please contact to support team! </span>
+                        <span> {INFO_MESSAGES.FALLBACK.SUB_TEXT_1} </span>
+                        <span> {INFO_MESSAGES.FALLBACK.SUB_TEXT_2} </span>
                     </div>
                 </div>
             )

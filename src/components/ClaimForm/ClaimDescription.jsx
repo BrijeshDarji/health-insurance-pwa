@@ -1,3 +1,7 @@
+/**
+ *  @description This file is a ClaimDescription step of the main ClaimForm.
+ */
+
 import React, { memo } from "react";
 
 import { DESCRIPTION_OF_CLAIM_FIELDS } from "../../assets/constants/FormFields";
