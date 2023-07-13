@@ -74,11 +74,13 @@ export const DocName = styled.div`
 export const CancelIcon = styled.div`
     color: #ffffff;
     margin-left: 20px;
-    padding: 2px 7px;
     background: #979797;
-    border-radius: 73px;
-    font-weight: bold;
-    font-size: 13px;
+    border-radius: 50%;
+    display: flex;
+    padding:3px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 `;
 
 export const FileDropWrapper = styled.div`
