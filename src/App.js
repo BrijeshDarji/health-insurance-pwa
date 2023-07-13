@@ -26,7 +26,7 @@ function App() {
             style={{ padding: "7px" }}
             onClick={() => onClose(key)}
         >
-            <CloseIcon className='"snackbar__action__icon"' />
+            <CloseIcon className="snackbar__action__icon" />
         </IconButton>
         // eslint-disable-next-line
     ), [])
@@ -34,7 +34,7 @@ function App() {
     const errorIcon = useMemo(() => (
         <ErrorIcon
             style={{ padding: "4px" }}
-            className='"snackbar__error__icon"'
+            className="snackbar__error__icon"
         />
     ), [])
 
@@ -58,9 +58,9 @@ function App() {
                         <CssBaseline />
                         <Routing />
                     </ErrorBoundary>
-                </SnackbarProvider>
-            </ThemeProvider>
-        </MuiThemeProvider>
+                </SnackbarProvider >
+            </ThemeProvider >
+        </MuiThemeProvider >
     );
 }
 
