@@ -3,6 +3,7 @@
         "PWA",
         "routes",
         "formComponents",
-        "errorBoundary"
+        "errorBoundary",
+        "loadingFallback"
     ]
 }
