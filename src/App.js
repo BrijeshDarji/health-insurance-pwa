@@ -17,6 +17,7 @@ function App() {
                 <SnackbarProvider
                     maxSnack={3}
                     preventDuplicate
+                    anchorOrigin={{ horizontal: "center", vertical: "bottom" }}
                     autoHideDuration={3000}
                 >
                     <ErrorBoundary>
