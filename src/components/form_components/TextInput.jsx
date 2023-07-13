@@ -19,7 +19,17 @@ function TextInput({
     return (
         <div>
             <GlobalInputLabel htmlFor={`outlined-input-for-${name}`}>
-                {hideLabel ? "" : label}
+                {
+                    hideLabel
+                        ? ""
+                        : (
+                            label + (
+                                required
+                                    ? " *"
+                                    : ""
+                            )
+                        )
+                }
             </GlobalInputLabel>
 
             <GlobalInput
@@ -28,7 +38,6 @@ function TextInput({
                 disabled={disabled}
                 placeholder={placeholder}
                 type={type}
-                required={required}
                 {...formAttr}
             />
         </div>

@@ -26,7 +26,7 @@ function DatePicker({
     return (
         <div>
             <GlobalInputLabel htmlFor={`outlined-input-for-${name}`}>
-                {label}
+                {label} {required ? " *" : ""}
             </GlobalInputLabel>
 
             <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -34,7 +34,6 @@ function DatePicker({
                     row
                     aria-labelledby="demo-row-radio-buttons-group-label"
                     name="row-radio-buttons-group"
-                    required={required}
                     disabled={disabled}
                     value={dayjs(formik?.values?.[name])}
                     onChange={handleChange}

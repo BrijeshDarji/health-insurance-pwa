@@ -17,7 +17,7 @@ function Textarea({
     return (
         <div>
             <GlobalInputLabel htmlFor={`outlined-input-for-${name}`}>
-                {label}
+                {label} {required ? " *" : ""}
             </GlobalInputLabel>
 
             <GlobalInput
@@ -27,7 +27,6 @@ function Textarea({
                 minRows={20}
                 disabled={disabled}
                 placeholder={placeholder}
-                required={required}
                 {...formAttr}
             />
         </div>
